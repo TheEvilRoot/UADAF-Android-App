@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/service_status_title" android:id="@id/serviceStatusFragment" android:icon="@drawable/ic_settings_ethernet"/>
+    <item android:title="@string/members_title" android:id="@id/membersFragment" android:icon="@drawable/ic_people"/>
+    <item android:title="@string/dashboard_title" android:id="@id/dashboardFragment" android:icon="@drawable/ic_dashboard"/>
+    <item android:title="@string/quoter_title" android:id="@id/quoterFragment" android:icon="@drawable/ic_format_quote"/>
+    <item android:title="@string/notification_center_title" android:id="@id/notificationCenterFragment" android:icon="@drawable/ic_notifications" />
+
+</menu>

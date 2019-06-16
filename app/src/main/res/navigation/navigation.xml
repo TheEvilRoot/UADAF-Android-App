@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/navigation"
+            app:startDestination="@id/dashboardFragment">
+
+    <fragment android:id="@+id/dashboardFragment" android:name="org.uadaf.app.dashboard.DashboardFragment"
+              android:label="fragment_dashboard" tools:layout="@layout/fragment_dashboard"/>
+    <fragment android:id="@+id/membersFragment" android:name="org.uadaf.app.members.MembersFragment"
+              android:label="fragment_members" tools:layout="@layout/fragment_members">
+    </fragment>
+    <fragment android:id="@+id/quoterFragment" android:name="org.uadaf.app.quoter.QuoterFragment"
+              android:label="fragment_quoter" tools:layout="@layout/fragment_quoter"/>
+    <fragment android:id="@+id/ITHFragment" android:name="org.uadaf.app.ith.ITHFragment" android:label="fragment_ith"
+              tools:layout="@layout/fragment_ith"/>
+    <fragment android:id="@+id/serviceStatusFragment" android:name="org.uadaf.app.servicestatus.ServiceStatusFragment"
+              android:label="fragment_service_status" tools:layout="@layout/fragment_service_status"/>
+    <fragment android:id="@+id/preferencesFragment" android:name="org.uadaf.app.preferences.PreferencesFragment"
+              android:label="fragment_preferences" tools:layout="@layout/fragment_preferences"/>
+    <fragment android:id="@+id/aboutFragment" android:name="org.uadaf.app.about.AboutFragment" android:label="fragment_about"
+              tools:layout="@layout/fragment_about"/>
+    <fragment android:id="@+id/notificationCenterFragment" android:name="org.uadaf.app.notificationcenter.NotificationCenterFragment"
+              android:label="fragment_notification_center" tools:layout="@layout/fragment_notification_center"/>
+    <fragment android:id="@+id/ith_stories_list_fragment" android:name="org.uadaf.app.ith.list.ITHStoriesListFragment"
+              android:label="ith_stories_list_fragment" tools:layout="@layout/fragment_ith_stories_list">
+        <argument android:name="onlyLiked" app:argType="boolean" android:defaultValue="false"/>
+    </fragment>
+    <fragment android:id="@+id/ith_story_fragment" android:name="org.uadaf.app.ith.story.ITHStoryFragment"
+              android:label="fragment_ith_story" tools:layout="@layout/fragment_ithstory">
+        <deepLink android:id="@+id/deepLink" app:uri="https://ithappens.me/story/{id}"/>
+    </fragment>
+</navigation>

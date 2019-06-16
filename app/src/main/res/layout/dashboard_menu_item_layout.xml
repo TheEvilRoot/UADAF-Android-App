@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.uadaf.app.internal.view.layouts.SquareCardViewLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                          xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                          android:layout_width="match_parent"
+                                                          android:layout_height="wrap_content"
+                                                          app:cardCornerRadius="8dp"
+                                                          app:contentPadding="0dp" app:cardElevation="4dp"
+                                                          app:cardUseCompatPadding="true"
+                                                          app:cardPreventCornerOverlap="true"
+                                                          android:clickable="true"
+                                                          android:focusable="true"
+                                                          android:background="?android:attr/selectableItemBackground">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground">
+
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@drawable/ic_dashboard" android:id="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/titleView"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                app:layout_constraintVertical_bias="0.6" android:contentDescription="@string/dashboard_icon_content_desc"/>
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/titleView"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" android:textAlignment="center"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</org.uadaf.app.internal.view.layouts.SquareCardViewLayout>

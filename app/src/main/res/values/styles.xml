@@ -1,0 +1,16 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar" >
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorMain">#FFF</item>
+        <item name="colorSecond">#FAFAFA</item>
+        <item name="colorBackground">#FAFAFA</item>
+        <item name="colorTextMain">#000</item>
+        <item name="colorTextSecond">#333</item>
+        <item name="colorIcons">#FFF</item>
+        <item name="colorNavIcons">@color/colorPrimaryDark</item>
+        <item name="colorLike">#C00A0A</item>
+    </style>
+</resources>
