@@ -1,6 +1,6 @@
 package org.uadaf.app.quoter
 
-import org.uadaf.app.quoter.data.Quote
+import quoter.Quote
 
 interface QuoterRepository {
 
@@ -8,6 +8,10 @@ interface QuoterRepository {
 
     fun getQuote(pos: Int): Quote
 
-    fun fetchQuotes()
+    fun fetchQuotes(repoName: String)
+
+    fun clearRepo()
+
+    fun checkRepo(repoName: String): Boolean
 
 }

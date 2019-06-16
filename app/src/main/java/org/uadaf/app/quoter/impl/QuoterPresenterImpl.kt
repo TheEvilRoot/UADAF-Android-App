@@ -23,18 +23,24 @@ class QuoterPresenterImpl (
 
     private val compositeDisposable = CompositeDisposable()
 
+    private var repoName: String = "uadaf"
+
     override fun getQuotesCount(): Int =
         quoterRepository.getQuotesCount()
+
+
+    override fun getSectionName(position: Int): String =
+        quoterRepository.getQuote(position).id.toString()
 
     override fun bindQuoteView(position: Int, view: QuoteRowView) {
         val quote = quoterRepository.getQuote(position)
 
         view.setID(quote.id)
         view.setAdder(quote.adder)
-        view.setAuthor(quote.author)
-        view.setText(quote.text)
+        view.setAuthor(quote.authors.joinToString(separator=", "))
+        view.setText(quote.content)
 
-        if (quote.editedAt >= 0 && quote.editedBy != null) {
+        if (quote.editedAt >= 0 && quote.editedAt > 0) {
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = quote.editedAt
             calendar.timeZone = TimeZone.getTimeZone("Europe/Moscow")
@@ -54,12 +60,14 @@ class QuoterPresenterImpl (
     override fun loadQuotes(force: Boolean) {
         if (!force && quoterRepository.getQuotesCount() > 0) {
             view.updateQuotesView()
+            view.updateRepo(repoName)
         } else {
             view.displayLoading()
             compositeDisposable.add(Completable.fromCallable {
-                quoterRepository.fetchQuotes()
+                quoterRepository.fetchQuotes(repoName)
             }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
                 view.stopLoading()
+                view.updateRepo(repoName)
                 if (quoterRepository.getQuotesCount() > 0) {
                     view.updateQuotesView()
                 } else {
@@ -67,6 +75,7 @@ class QuoterPresenterImpl (
                 }
             }, {
                 view.stopLoading()
+                view.updateRepo(repoName)
                 when (it) {
                     is NoConnectivityException -> view.displayNoInternet()
                     is UADAFServiceException -> view.displayServiceUnavailable()
@@ -75,5 +84,22 @@ class QuoterPresenterImpl (
             }))
         }
     }
+
+    override fun updateRepo(repoNameIn: String) {
+        if (repoName == repoNameIn) return
+        compositeDisposable.add(Completable.fromCallable {
+            quoterRepository.checkRepo(repoNameIn)
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
+            repoName = repoNameIn
+            view.updateRepo(repoName)
+            quoterRepository.clearRepo()
+            loadQuotes(true)
+        }) {
+            view.repoError(it.message ?: "Repo error")
+        })
+    }
+
+    override fun repoName(): String =
+            repoName
 
 }

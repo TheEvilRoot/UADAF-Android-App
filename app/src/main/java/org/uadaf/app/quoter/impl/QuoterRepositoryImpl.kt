@@ -1,12 +1,12 @@
 package org.uadaf.app.quoter.impl
 
-import org.uadaf.app.internal.UADAFServiceException
+import kotlinx.coroutines.runBlocking
+import org.uadaf.app.quoter.QuoterAPI
 import org.uadaf.app.quoter.QuoterRepository
-import org.uadaf.app.quoter.data.Quote
-import org.uadaf.app.quoter.service.QuoterService
+import quoter.Quote
 
 class QuoterRepositoryImpl(
-    private val quoterService: QuoterService
+    private val quoterApi: QuoterAPI
 ): QuoterRepository {
 
     private val quotesList = ArrayList<Quote>()
@@ -17,19 +17,19 @@ class QuoterRepositoryImpl(
     override fun getQuote(pos: Int): Quote =
         quotesList[pos]
 
-    override fun fetchQuotes() {
-        val call = quoterService.getAll()
-        val response = call.execute()
-
-        if (!response.isSuccessful) {
-            throw UADAFServiceException("Quoter", "fetchQuotes")
-        }
-
-        val quotes = response.body()
-            ?: throw UADAFServiceException("Quoter", "fetchQuotes:emptyBody")
-
-        quotesList.clear()
+    override fun fetchQuotes(repoName: String) {
+        val quotes = runBlocking { quoterApi.quoter().all(repo = repoName) }
+        clearRepo()
         quotesList.addAll(quotes)
+    }
+
+    override fun checkRepo(repoName: String): Boolean {
+        runBlocking { quoterApi.quoter().total(repo = repoName) }
+        return true
+    }
+
+    override fun clearRepo() {
+        quotesList.clear()
     }
 
 }

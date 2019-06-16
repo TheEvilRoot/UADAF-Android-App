@@ -25,9 +25,10 @@ import org.uadaf.app.notificationcenter.NotificationCenter
 import org.uadaf.app.notificationcenter.impl.NotificationCenterImpl
 import org.uadaf.app.preferences.PreferencesProvider
 import org.uadaf.app.preferences.impl.PreferencesProviderImpl
+import org.uadaf.app.quoter.QuoterAPI
 import org.uadaf.app.quoter.QuoterRepository
+import org.uadaf.app.quoter.impl.QuoterAPIImpl
 import org.uadaf.app.quoter.impl.QuoterRepositoryImpl
-import org.uadaf.app.quoter.service.QuoterService
 import pl.droidsonroids.retrofit2.JspoonConverterFactory
 
 class UADAF: Application(), KodeinAware {
@@ -49,7 +50,7 @@ class UADAF: Application(), KodeinAware {
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptor(instance(), instance(), instance()) }
         bind<UADAFService>() with singleton { ServiceFactory.create<UADAFService>(apiURL, instance()) }
         bind<APIHelper>() with singleton { APIHelperImpl(instance(), instance()) }
-        bind<QuoterService>() with singleton { ServiceFactory.create<QuoterService>(apiURL + "quote/", instance()) }
+        bind<QuoterAPI>() with singleton { QuoterAPIImpl() }
         bind<QuoterRepository>() with singleton { QuoterRepositoryImpl(instance()) }
         bind<ITHService>() with singleton { ServiceFactory.create<ITHService>(apiURL + "ith/", instance()) }
         bind<ITHWebFetcherService>() with singleton { ServiceFactory.create<ITHWebFetcherService>(ithURL, instance(), JspoonConverterFactory.create()) }

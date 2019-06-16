@@ -16,4 +16,8 @@ interface QuoterView: IErrorView {
 
     fun stopLoading()
 
+    fun repoError(message: String)
+
+    fun updateRepo(newRepo: String)
+
 }

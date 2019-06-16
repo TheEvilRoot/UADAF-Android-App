@@ -5,8 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.LayoutMode
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.WhichButton
+import com.afollestad.materialdialogs.actions.setActionButtonEnabled
+import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.afollestad.materialdialogs.bottomsheets.setPeekHeight
+import com.afollestad.materialdialogs.input.getInputField
+import com.afollestad.materialdialogs.input.input
 import kotlinx.android.synthetic.main.fragment_quoter.*
 import kotlinx.android.synthetic.main.fragment_quoter.view.*
 import org.kodein.di.Kodein
@@ -70,6 +79,17 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
                     }
                 }
             })
+            quoterRecyclerView.setFastScrollEnabled(true)
+            toolbar.setOnClickListener {
+                MaterialDialog(windowContext = context, dialogBehavior = BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+                    cornerRadius(16f)
+                    title(text = "Quoter repository")
+                    input(hint = "Repository name... (uadaf by default)", prefill = presenter.repoName())
+                    positiveButton(text = "Submit") {
+                        presenter.updateRepo(getInputField().text.toString())
+                    }
+                }
+            }
         }
 
 
@@ -123,6 +143,7 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
             quoterRecyclerView.visibility = View.INVISIBLE
             changeMenu(fabReloadMode)
         }
+        Toast.makeText(context, "Error: $message", Toast.LENGTH_LONG).show()
     }
 
     override fun displayLoading() {
@@ -131,6 +152,16 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
 
     override fun stopLoading() {
         mainActivityView.stopLoading()
+    }
+
+    override fun repoError(message: String) {
+        Toast.makeText(context, "Repo error: $message", Toast.LENGTH_LONG).show()
+    }
+
+    override fun updateRepo(newRepo: String) {
+        view?.run {
+            repoNameView.text = newRepo
+        }
     }
 
 

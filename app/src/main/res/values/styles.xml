@@ -12,5 +12,7 @@
         <item name="colorIcons">#FFF</item>
         <item name="colorNavIcons">@color/colorPrimaryDark</item>
         <item name="colorLike">#C00A0A</item>
+        <item name="md_color_button_text">@color/colorPrimaryDark</item>
+        <item name="md_color_content">#000</item>
     </style>
 </resources>

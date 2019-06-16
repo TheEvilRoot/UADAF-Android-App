@@ -8,4 +8,10 @@ interface QuoterPresenter {
 
     fun loadQuotes(force: Boolean = false)
 
+    fun updateRepo(repoNameIn: String)
+
+    fun repoName(): String
+
+    fun getSectionName(position: Int): String
+
 }
