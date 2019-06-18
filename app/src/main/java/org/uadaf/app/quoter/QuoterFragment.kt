@@ -160,7 +160,12 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
 
     override fun updateRepo(newRepo: String) {
         view?.run {
-            repoNameView.text = newRepo
+            if (newRepo.isEmpty()) {
+                repoNameView.visibility = View.GONE
+            } else {
+                repoNameView.visibility = View.VISIBLE
+                repoNameView.text = newRepo
+            }
         }
     }
 

@@ -30,7 +30,7 @@ class QuoterPresenterImpl (
 
 
     override fun getSectionName(position: Int): String =
-        quoterRepository.getQuote(position).id.toString()
+        quoterRepository.sectionNameBySorting(position)
 
     override fun bindQuoteView(position: Int, view: QuoteRowView) {
         val quote = quoterRepository.getQuote(position)
