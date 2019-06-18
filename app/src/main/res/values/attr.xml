@@ -8,4 +8,7 @@
     <attr name="colorTextMain" format="color|reference" />
     <attr name="colorTextSecond" format="color|reference" />
     <attr name="colorLike" format="color|reference" />
+    <attr name="colorDashboardIcon" format="color|reference" />
+    <attr name="colorDashboardItemBackground" format="color|reference" />
+    <attr name="colorDashboardText" format="color|reference" />
 </resources>

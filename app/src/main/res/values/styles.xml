@@ -12,6 +12,9 @@
         <item name="colorIcons">#FFF</item>
         <item name="colorNavIcons">@color/colorPrimaryDark</item>
         <item name="colorLike">#C00A0A</item>
+        <item name="colorDashboardIcon">#FFF</item>
+        <item name="colorDashboardText">#FFF</item>
+        <item name="colorDashboardItemBackground">@color/colorPrimaryDark</item>
         <item name="md_color_button_text">@color/colorPrimaryDark</item>
         <item name="md_color_content">#000</item>
     </style>
