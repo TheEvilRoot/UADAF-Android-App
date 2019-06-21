@@ -42,19 +42,61 @@ class UADAF: Application(), KodeinAware {
         import(androidXModule(this@UADAF))
 
         bind<JsonParser>() with singleton { JsonParser() }
-        bind<PreferencesProvider>() with singleton { PreferencesProviderImpl(instance()) }
+
+        bind<PreferencesProvider>() with singleton { PreferencesProviderImpl(
+            context = instance()
+        ) }
+
         bind<DashboardRepository>() with singleton { DashboardRepositoryImpl() }
-        bind<NotificationCenter>() with singleton { NotificationCenterImpl(instance()) }
+
+        bind<NotificationCenter>() with singleton { NotificationCenterImpl(
+            context = instance()
+        ) }
+
         bind<PermissionsActivityDelegate>() with singleton { PermissionsActivityDelegate() }
-        bind<MrButler>() with singleton { MrButler(instance()) }
-        bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptor(instance(), instance(), instance()) }
-        bind<UADAFService>() with singleton { ServiceFactory.create<UADAFService>(apiURL, instance()) }
-        bind<APIHelper>() with singleton { APIHelperImpl(instance(), instance()) }
+
+        bind<MrButler>() with singleton { MrButler(
+            permissionsHandler = instance()
+        ) }
+
+        bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptor(
+            context = instance(),
+            notificationCenter = instance(),
+            preferencesProvider = instance()
+        ) }
+
+        bind<UADAFService>() with singleton { ServiceFactory.create<UADAFService>(
+            baseURL = apiURL,
+            interceptor = instance()
+        ) }
+
+        bind<APIHelper>() with singleton { APIHelperImpl(
+            context = instance(),
+            service = instance()
+        ) }
+
         bind<QuoterAPI>() with singleton { QuoterAPIImpl() }
-        bind<QuoterRepository>() with singleton { QuoterRepositoryImpl(instance()) }
-        bind<ITHService>() with singleton { ServiceFactory.create<ITHService>(apiURL + "ith/", instance()) }
-        bind<ITHWebFetcherService>() with singleton { ServiceFactory.create<ITHWebFetcherService>(ithURL, instance(), JspoonConverterFactory.create()) }
-        bind<ITHRepository>() with singleton { ITHRepositoryImpl(instance(), instance(), instance()) }
+
+        bind<QuoterRepository>() with singleton { QuoterRepositoryImpl(
+            quoterApi = instance()
+        ) }
+
+        bind<ITHService>() with singleton { ServiceFactory.create<ITHService>(
+            baseURL = apiURL + "ith/",
+            interceptor = instance()
+        ) }
+
+        bind<ITHWebFetcherService>() with singleton { ServiceFactory.create<ITHWebFetcherService>(
+            baseURL = ithURL,
+            interceptor = instance(),
+            convertFactory = JspoonConverterFactory.create()
+        ) }
+
+        bind<ITHRepository>() with singleton { ITHRepositoryImpl(
+            service = instance(),
+            fetcher = instance(),
+            preferencesProvider = instance()
+        ) }
     }
 
 }

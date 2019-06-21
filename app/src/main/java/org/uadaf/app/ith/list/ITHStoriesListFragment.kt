@@ -13,19 +13,18 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_ith_stories_list.view.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
-import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import org.uadaf.app.R
-import org.uadaf.app.UADAF
 import org.uadaf.app.internal.exceptions.ExceptionDispatcher
 import org.uadaf.app.ith.ITHRepository
 import org.uadaf.app.ith.list.impl.ITHStoriesListItemAdapter
 import org.uadaf.app.ith.list.impl.ITHStoriesListPresenterImpl
 import org.uadaf.app.main.MainView
+import org.kodein.di.android.x.kodein
 
 class ITHStoriesListFragment : Fragment(),ITHStoriesListView ,KodeinAware {
 
-    override val kodein: Kodein by kodein(this@ITHStoriesListFragment.requireContext())
+    override val kodein: Kodein by kodein()
 
     private val ithRepository: ITHRepository by instance()
     private val exceptionDispatcher: ExceptionDispatcher by instance()

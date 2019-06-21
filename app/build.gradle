@@ -94,6 +94,7 @@ dependencies {
     implementation 'com.simplecityapps:recyclerview-fastscroll:2.0.0'
 
 
+    implementation 'com.github.JastAir:Android-BackgroundChart:1.0.1-alpha'
 
 
 

@@ -15,10 +15,12 @@ import org.kodein.di.generic.instance
 import org.uadaf.app.R
 import org.uadaf.app.dashboard.impl.DashboardPresenterImpl
 import org.uadaf.app.notificationcenter.NotificationCenter
+import org.uadaf.app.preferences.PreferencesProvider
 
 class DashboardFragment : Fragment(), KodeinAware, DashboardView {
     override val kodein: Kodein by kodein()
 
+    private val preferencesProvider: PreferencesProvider by instance()
     private val repository: DashboardRepository by instance()
     private val notificationCenter: NotificationCenter by instance()
     private val presenter: DashboardPresenter by lazy { DashboardPresenterImpl(repository, this, notificationCenter) }
@@ -37,6 +39,8 @@ class DashboardFragment : Fragment(), KodeinAware, DashboardView {
         view.apply {
             dashboardRecyclerView.layoutManager = GridLayoutManager(context, presenter.getMenuItemsCount() / 2)
             dashboardRecyclerView.adapter = adapter
+            val values = preferencesProvider.stringSet("graph", mutableSetOf("10", "30", "25", "32", "13", "5", "18", "36", "20", "30", "28", "27", "29"))
+            gradientChart.chartValues = values.mapNotNull(String::toFloatOrNull).toTypedArray()
         }
     }
 

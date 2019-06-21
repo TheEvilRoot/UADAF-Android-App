@@ -12,4 +12,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         addPreferencesFromResource(R.xml.app_preferences)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
 }
