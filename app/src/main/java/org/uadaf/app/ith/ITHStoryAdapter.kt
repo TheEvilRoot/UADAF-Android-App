@@ -5,11 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.uadaf.app.R
 import org.uadaf.app.ith.impl.*
-import java.lang.RuntimeException
 
 class ITHStoryAdapter(
     private val presenter: ITHRowViewPresenter
-): RecyclerView.Adapter<ITHStoryViewHolder>() {
+) : RecyclerView.Adapter<ITHStoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ITHStoryViewHolder {
 

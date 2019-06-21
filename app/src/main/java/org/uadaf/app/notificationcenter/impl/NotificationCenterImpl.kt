@@ -1,13 +1,8 @@
 package org.uadaf.app.notificationcenter.impl
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
-import android.os.Build
-import androidx.core.content.getSystemService
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
-import org.reactivestreams.Subscriber
 import org.uadaf.app.notificationcenter.NotificationCenter
 import org.uadaf.app.notificationcenter.data.Notification
 import org.uadaf.app.notificationcenter.data.NotificationAction
@@ -15,7 +10,7 @@ import org.uadaf.app.notificationcenter.data.NotificationEvent
 
 class NotificationCenterImpl(
     context: Context
-): NotificationCenter {
+) : NotificationCenter {
 
     private val applicationContext = context.applicationContext
 
@@ -57,7 +52,7 @@ class NotificationCenterImpl(
     }
 
     override fun getNotifier(): Subject<NotificationEvent> =
-            notificationSubject
+        notificationSubject
 
 
 }

@@ -1,6 +1,5 @@
 package org.uadaf.app.ith
 
-import android.graphics.Bitmap
 import org.uadaf.app.ith.data.ITHStory
 import org.uadaf.app.ith.data.ITHUser
 

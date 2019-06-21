@@ -3,7 +3,7 @@ package org.uadaf.app.notificationcenter
 import androidx.annotation.IdRes
 import org.uadaf.app.internal.view.IErrorView
 
-interface NotificationCenterView: IErrorView {
+interface NotificationCenterView : IErrorView {
 
     fun displayNotificationList()
 

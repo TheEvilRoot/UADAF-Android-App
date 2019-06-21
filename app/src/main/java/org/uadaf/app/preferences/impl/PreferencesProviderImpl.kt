@@ -6,7 +6,7 @@ import org.uadaf.app.preferences.PreferencesProvider
 
 class PreferencesProviderImpl(
     context: Context
-): PreferencesProvider {
+) : PreferencesProvider {
 
     private val applicationContext: Context = context.applicationContext
 
@@ -30,9 +30,10 @@ class PreferencesProviderImpl(
 
 
     override fun stringSet(key: String, defaultValue: MutableSet<String>): MutableSet<String> =
-        PreferenceManager.getDefaultSharedPreferences(applicationContext).getStringSet(key, defaultValue) ?: defaultValue
+        PreferenceManager.getDefaultSharedPreferences(applicationContext).getStringSet(key, defaultValue)
+            ?: defaultValue
 
     override fun preferenceName(res: Int): String =
-            applicationContext.resources.getString(res)
+        applicationContext.resources.getString(res)
 
 }

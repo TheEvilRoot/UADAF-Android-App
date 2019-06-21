@@ -31,7 +31,7 @@ import org.uadaf.app.quoter.impl.QuoterAPIImpl
 import org.uadaf.app.quoter.impl.QuoterRepositoryImpl
 import pl.droidsonroids.retrofit2.JspoonConverterFactory
 
-class UADAF: Application(), KodeinAware {
+class UADAF : Application(), KodeinAware {
 
     private val apiURL = "http://52.48.142.75:6741/api/"
     private val ithURL = "https://ithappens.me/"
@@ -43,60 +43,80 @@ class UADAF: Application(), KodeinAware {
 
         bind<JsonParser>() with singleton { JsonParser() }
 
-        bind<PreferencesProvider>() with singleton { PreferencesProviderImpl(
-            context = instance()
-        ) }
+        bind<PreferencesProvider>() with singleton {
+            PreferencesProviderImpl(
+                context = instance()
+            )
+        }
 
         bind<DashboardRepository>() with singleton { DashboardRepositoryImpl() }
 
-        bind<NotificationCenter>() with singleton { NotificationCenterImpl(
-            context = instance()
-        ) }
+        bind<NotificationCenter>() with singleton {
+            NotificationCenterImpl(
+                context = instance()
+            )
+        }
 
         bind<PermissionsActivityDelegate>() with singleton { PermissionsActivityDelegate() }
 
-        bind<MrButler>() with singleton { MrButler(
-            permissionsHandler = instance()
-        ) }
+        bind<MrButler>() with singleton {
+            MrButler(
+                permissionsHandler = instance()
+            )
+        }
 
-        bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptor(
-            context = instance(),
-            notificationCenter = instance(),
-            preferencesProvider = instance()
-        ) }
+        bind<ConnectivityInterceptor>() with singleton {
+            ConnectivityInterceptor(
+                context = instance(),
+                notificationCenter = instance(),
+                preferencesProvider = instance()
+            )
+        }
 
-        bind<UADAFService>() with singleton { ServiceFactory.create<UADAFService>(
-            baseURL = apiURL,
-            interceptor = instance()
-        ) }
+        bind<UADAFService>() with singleton {
+            ServiceFactory.create<UADAFService>(
+                baseURL = apiURL,
+                interceptor = instance()
+            )
+        }
 
-        bind<APIHelper>() with singleton { APIHelperImpl(
-            context = instance(),
-            service = instance()
-        ) }
+        bind<APIHelper>() with singleton {
+            APIHelperImpl(
+                context = instance(),
+                service = instance()
+            )
+        }
 
         bind<QuoterAPI>() with singleton { QuoterAPIImpl() }
 
-        bind<QuoterRepository>() with singleton { QuoterRepositoryImpl(
-            quoterApi = instance()
-        ) }
+        bind<QuoterRepository>() with singleton {
+            QuoterRepositoryImpl(
+                quoterApi = instance()
+            )
+        }
 
-        bind<ITHService>() with singleton { ServiceFactory.create<ITHService>(
-            baseURL = apiURL + "ith/",
-            interceptor = instance()
-        ) }
+        bind<ITHService>() with singleton {
+            ServiceFactory.create<ITHService>(
+                baseURL = apiURL + "ith/",
+                interceptor = instance()
+            )
+        }
 
-        bind<ITHWebFetcherService>() with singleton { ServiceFactory.create<ITHWebFetcherService>(
-            baseURL = ithURL,
-            interceptor = instance(),
-            convertFactory = JspoonConverterFactory.create()
-        ) }
+        bind<ITHWebFetcherService>() with singleton {
+            ServiceFactory.create<ITHWebFetcherService>(
+                baseURL = ithURL,
+                interceptor = instance(),
+                convertFactory = JspoonConverterFactory.create()
+            )
+        }
 
-        bind<ITHRepository>() with singleton { ITHRepositoryImpl(
-            service = instance(),
-            fetcher = instance(),
-            preferencesProvider = instance()
-        ) }
+        bind<ITHRepository>() with singleton {
+            ITHRepositoryImpl(
+                service = instance(),
+                fetcher = instance(),
+                preferencesProvider = instance()
+            )
+        }
     }
 
 }

@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 
-class DashboardMenuItem (
+class DashboardMenuItem(
     @StringRes
     val titleRes: Int,
     @DrawableRes

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="colorBackground" format="color|reference" />
-    <attr name="colorMain" format="color|reference"/>
-    <attr name="colorIcons" format="color|reference"/>
-    <attr name="colorNavIcons" format="color|reference"/>
-    <attr name="colorSecond" format="color|reference" />
-    <attr name="colorTextMain" format="color|reference" />
-    <attr name="colorTextSecond" format="color|reference" />
-    <attr name="colorLike" format="color|reference" />
-    <attr name="colorDashboardIcon" format="color|reference" />
-    <attr name="colorDashboardItemBackground" format="color|reference" />
-    <attr name="colorDashboardText" format="color|reference" />
+	<attr name="colorBackground" format="color|reference"/>
+	<attr name="colorMain" format="color|reference"/>
+	<attr name="colorIcons" format="color|reference"/>
+	<attr name="colorNavIcons" format="color|reference"/>
+	<attr name="colorSecond" format="color|reference"/>
+	<attr name="colorTextMain" format="color|reference"/>
+	<attr name="colorTextSecond" format="color|reference"/>
+	<attr name="colorLike" format="color|reference"/>
+	<attr name="colorDashboardIcon" format="color|reference"/>
+	<attr name="colorDashboardItemBackground" format="color|reference"/>
+	<attr name="colorDashboardText" format="color|reference"/>
 </resources>

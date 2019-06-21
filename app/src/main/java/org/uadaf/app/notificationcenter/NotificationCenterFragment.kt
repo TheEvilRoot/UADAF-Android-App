@@ -2,10 +2,10 @@ package org.uadaf.app.notificationcenter
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +25,13 @@ class NotificationCenterFragment : Fragment(), NotificationCenterView, KodeinAwa
     override val kodein: Kodein by kodein()
     private val exceptionDispatcher: ExceptionDispatcher by instance()
     private val notificationCenter: NotificationCenter by instance()
-    private val presenter: NotificationCenterPresenter by lazy { NotificationCenterPresenterImpl(notificationCenter, this, exceptionDispatcher) }
+    private val presenter: NotificationCenterPresenter by lazy {
+        NotificationCenterPresenterImpl(
+            notificationCenter,
+            this,
+            exceptionDispatcher
+        )
+    }
     private val adapter: NotificationCenterAdapter by lazy { NotificationCenterAdapter(presenter) }
 
     override fun displayNotificationList() {
@@ -77,8 +83,13 @@ class NotificationCenterFragment : Fragment(), NotificationCenterView, KodeinAwa
         with(view) {
             notificationsRecyclerView.layoutManager = LinearLayoutManager(view.context)
             notificationsRecyclerView.adapter = adapter
-            val helper = ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-                override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean =
+            val helper = ItemTouchHelper(object :
+                ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean =
                     false
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

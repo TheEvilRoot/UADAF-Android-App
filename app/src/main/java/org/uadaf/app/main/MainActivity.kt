@@ -20,15 +20,29 @@ import org.uadaf.app.internal.exceptions.impl.ExceptionDispatcherImpl
 import org.uadaf.app.main.impl.MainPresenterImpl
 import org.uadaf.app.members.MembersFragment
 
-class MainActivity: AppCompatActivity(),
+class MainActivity : AppCompatActivity(),
     MembersFragment.OnFragmentInteractionListener,
     KodeinAware, MainView {
 
     override val kodein: Kodein by Kodein.lazy {
         extend((application as UADAF).kodein)
         bind<MainView>() with singleton { this@MainActivity }
-        bind<MainPresenter>() with singleton { MainPresenterImpl(instance(), instance(), instance(), this@MainActivity) }
-        bind<ExceptionDispatcher>() with singleton { ExceptionDispatcherImpl(instance(), instance(), instance(), instance()) }
+        bind<MainPresenter>() with singleton {
+            MainPresenterImpl(
+                instance(),
+                instance(),
+                instance(),
+                this@MainActivity
+            )
+        }
+        bind<ExceptionDispatcher>() with singleton {
+            ExceptionDispatcherImpl(
+                instance(),
+                instance(),
+                instance(),
+                instance()
+            )
+        }
     }
 
     private val permissionsDelegate: PermissionsActivityDelegate by instance()
@@ -87,7 +101,6 @@ class MainActivity: AppCompatActivity(),
     override fun displayFatalError(message: String, throwable: Throwable) {
         TODO("fatalError") //To change body of created functions use File | Settings | File Templates.
     }
-
 
 
 }

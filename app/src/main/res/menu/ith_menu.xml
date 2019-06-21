@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item app:showAsAction="ifRoom" android:id="@+id/ithAll" android:icon="@drawable/ic_apps" android:title="@string/ith_toolbar_all"/>
-    <item app:showAsAction="always" android:id="@+id/ithFavs" android:title="@string/ith_toolbar_favs"
-          android:icon="@drawable/ic_favorite"/>
+	<item app:showAsAction="ifRoom"
+		android:id="@+id/ithAll"
+		android:icon="@drawable/ic_apps"
+		android:title="@string/ith_toolbar_all"/>
+	<item app:showAsAction="always"
+		android:id="@+id/ithFavs"
+		android:title="@string/ith_toolbar_favs"
+		android:icon="@drawable/ic_favorite"/>
 </menu>

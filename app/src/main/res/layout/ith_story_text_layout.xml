@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content" android:padding="8dp">
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:padding="8dp">
 
-    <TextView
-            tools:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/textView" android:textColor="?attr/colorTextMain"
-            android:textSize="18sp" android:background="@drawable/bg_ith_text"/>
+	<TextView android:id="@+id/textView"
+		tools:text="TextView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textColor="?attr/colorTextMain"
+		android:textSize="18sp"
+		android:background="@drawable/bg_ith_text"/>
+
 </LinearLayout>

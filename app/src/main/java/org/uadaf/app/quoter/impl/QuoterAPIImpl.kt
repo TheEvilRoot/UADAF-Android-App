@@ -2,11 +2,10 @@ package org.uadaf.app.quoter.impl
 
 import org.uadaf.app.quoter.QuoterAPI
 import quoter.Quoter
-import java.lang.RuntimeException
 
-class QuoterAPIImpl (
+class QuoterAPIImpl(
 
-): QuoterAPI {
+) : QuoterAPI {
 
     private val baseUrl = "http://52.48.142.75:6741/api/v2/quote/"
     private val keyLifetime = 5 * 60 * 1000
@@ -24,8 +23,7 @@ class QuoterAPIImpl (
                 ?: throw RuntimeException("Unable to create Quoter(baseUrl, null)")
         }
 
-        return quoter ?:
-                throw RuntimeException("Quoter unexpectedly became null")
+        return quoter ?: throw RuntimeException("Quoter unexpectedly became null")
     }
 
     override fun hasValidKey(): Boolean =

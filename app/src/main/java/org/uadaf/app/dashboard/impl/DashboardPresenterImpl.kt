@@ -9,11 +9,11 @@ import org.uadaf.app.dashboard.DashboardView
 import org.uadaf.app.notificationcenter.NotificationCenter
 import org.uadaf.app.notificationcenter.data.Notification
 
-class DashboardPresenterImpl (
+class DashboardPresenterImpl(
     private val repository: DashboardRepository,
     private val dashboardView: DashboardView,
     private val notificationCenter: NotificationCenter
-): DashboardPresenter{
+) : DashboardPresenter {
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -38,9 +38,10 @@ class DashboardPresenterImpl (
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 // No-Op
-            },{
+            }, {
                 notificationCenter.postNotification(Notification("Error: ${it.localizedMessage ?: "No-Op"}"))
-            }))
+            })
+        )
     }
 
     override fun detachNotificationSubject() {

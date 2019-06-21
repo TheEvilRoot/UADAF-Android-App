@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.dashboard_menu_item_layout.view.*
 import org.uadaf.app.dashboard.DashboardMenuItemView
 
-class DashboardMenuItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), DashboardMenuItemView {
+class DashboardMenuItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), DashboardMenuItemView {
     override fun setTitle(@StringRes stringRes: Int) {
         with(itemView) {
             titleView.setText(stringRes)

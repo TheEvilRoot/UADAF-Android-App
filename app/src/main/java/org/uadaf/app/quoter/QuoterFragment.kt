@@ -1,19 +1,16 @@
 package org.uadaf.app.quoter
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.WhichButton
-import com.afollestad.materialdialogs.actions.setActionButtonEnabled
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
-import com.afollestad.materialdialogs.bottomsheets.setPeekHeight
 import com.afollestad.materialdialogs.input.getInputField
 import com.afollestad.materialdialogs.input.input
 import kotlinx.android.synthetic.main.fragment_quoter.*
@@ -38,7 +35,14 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
     private val notificationCenter: NotificationCenter by instance()
     private val mainActivityView: MainView by instance()
 
-    private val presenter: QuoterPresenter by lazy { QuoterPresenterImpl(notificationCenter, repository, this, exceptionDispatcher) }
+    private val presenter: QuoterPresenter by lazy {
+        QuoterPresenterImpl(
+            notificationCenter,
+            repository,
+            this,
+            exceptionDispatcher
+        )
+    }
     private val adapter: QuoterAdapter by lazy { QuoterAdapter(presenter) }
 
     private val fabMenuMode: FABMode = FABMode(R.string.menu_title, R.drawable.ic_menu) {

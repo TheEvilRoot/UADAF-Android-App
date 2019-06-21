@@ -1,6 +1,5 @@
 package org.uadaf.app.dashboard
 
-import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 

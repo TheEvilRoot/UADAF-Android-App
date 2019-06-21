@@ -23,5 +23,4 @@ interface AboutRowAuthorsView {
 interface AbouRowLinksView {
 
 
-
 }

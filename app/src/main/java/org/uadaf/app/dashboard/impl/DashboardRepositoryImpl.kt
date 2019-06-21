@@ -4,7 +4,7 @@ import org.uadaf.app.R
 import org.uadaf.app.dashboard.DashboardRepository
 import org.uadaf.app.dashboard.data.DashboardMenuItem
 
-class DashboardRepositoryImpl: DashboardRepository {
+class DashboardRepositoryImpl : DashboardRepository {
 
     private val menuItems = arrayOf(
         DashboardMenuItem(R.string.quoter_title, R.drawable.ic_format_quote, R.id.quoterFragment),
@@ -19,6 +19,6 @@ class DashboardRepositoryImpl: DashboardRepository {
         menuItems.count()
 
     override fun menuItem(pos: Int): DashboardMenuItem =
-            menuItems[pos]
+        menuItems[pos]
 
 }

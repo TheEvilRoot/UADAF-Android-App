@@ -6,7 +6,7 @@ enum class NotificationAction {
     UPDATE
 }
 
-data class NotificationEvent (
+data class NotificationEvent(
     val action: NotificationAction,
     val position: Int = 0,
     val notification: Notification? = null

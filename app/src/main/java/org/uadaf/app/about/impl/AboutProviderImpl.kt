@@ -1,6 +1,5 @@
 package org.uadaf.app.about.impl
 
-import androidx.annotation.DrawableRes
 import org.uadaf.app.R
 import org.uadaf.app.about.AboutProvider
 import org.uadaf.app.about.data.Author
@@ -8,12 +7,14 @@ import org.uadaf.app.about.data.Link
 
 class AboutProviderImpl(
 
-): AboutProvider {
+) : AboutProvider {
 
     private val authors = listOf(
-        Author("TheEvilRoot", listOf(
-            Link("VK", "https://vk.com/pelmen_it", R.color.color_vk, R.drawable.vk)
-        ))
+        Author(
+            "TheEvilRoot", listOf(
+                Link("VK", "https://ic_vk.com/pelmen_it", R.color.color_vk, R.drawable.ic_vk)
+            )
+        )
     )
 
     private val links = listOf(
@@ -39,5 +40,5 @@ class AboutProviderImpl(
         links.count()
 
     override fun getLink(position: Int): Link =
-            links[position]
+        links[position]
 }

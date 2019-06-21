@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="@string/notification_center_title">
-        <SwitchPreference
-                android:title="@string/preference_failed_requests_notification_title"
-                android:key="@string/preference_failed_requests_notification"
-                android:summary="@string/preference_failed_requests_notification_descr"
-                android:defaultValue="true" />
+	<PreferenceCategory android:title="@string/notification_center_title">
+		<SwitchPreference
+			android:title="@string/preference_failed_requests_notification_title"
+			android:key="@string/preference_failed_requests_notification"
+			android:summary="@string/preference_failed_requests_notification_descr"
+			android:defaultValue="true"/>
 
-        <SwitchPreference
-                android:title="@string/preference_exceptions_notification_title"
-                android:key="@string/preference_exceptions_notification"
-                android:summary="@string/preference_exceptions_notification_descr"
-                android:defaultValue="true" />
+		<SwitchPreference
+			android:title="@string/preference_exceptions_notification_title"
+			android:key="@string/preference_exceptions_notification"
+			android:summary="@string/preference_exceptions_notification_descr"
+			android:defaultValue="true"/>
 
 
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/ith_title">
-        <EditTextPreference android:title="Имя пользователя ITH"
-                            android:key="@string/preference_ith_username"
-                            android:defaultValue="@string/empty" />
-    </PreferenceCategory>
+	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/ith_title">
+		<EditTextPreference android:title="Имя пользователя ITH"
+			android:key="@string/preference_ith_username"
+			android:defaultValue="@string/empty"/>
+	</PreferenceCategory>
 </PreferenceScreen>

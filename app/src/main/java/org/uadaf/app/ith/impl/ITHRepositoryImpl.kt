@@ -9,13 +9,12 @@ import org.uadaf.app.ith.data.ITHUser
 import org.uadaf.app.ith.service.ITHService
 import org.uadaf.app.ith.service.ITHWebFetcherService
 import org.uadaf.app.preferences.PreferencesProvider
-import java.lang.RuntimeException
 
-class ITHRepositoryImpl (
+class ITHRepositoryImpl(
     private val service: ITHService,
     private val fetcher: ITHWebFetcherService,
     private val preferencesProvider: PreferencesProvider
-): ITHRepository {
+) : ITHRepository {
 
     private var user: ITHUser? = null
     private var currentStory: ITHStory? = null
@@ -27,12 +26,14 @@ class ITHRepositoryImpl (
         user
 
     override fun getLocalUsername(): String? {
-        val username = preferencesProvider.string(preferencesProvider.preferenceName(R.string.preference_ith_username), "")
+        val username =
+            preferencesProvider.string(preferencesProvider.preferenceName(R.string.preference_ith_username), "")
         if (username.isEmpty()) {
             return null
         }
         return username
     }
+
     override fun initUser(username: String): ITHUser {
 
         val call = service.login(username)
@@ -43,8 +44,7 @@ class ITHRepositoryImpl (
             throw UADAFServiceException("ITH", "initUser")
         }
 
-        val fetched = response.body() ?:
-                throw UADAFServiceException("ITH", "initUser:emptyBody")
+        val fetched = response.body() ?: throw UADAFServiceException("ITH", "initUser:emptyBody")
 
         user = fetched
 
@@ -103,8 +103,7 @@ class ITHRepositoryImpl (
 
             when (response.code()) {
                 200 -> {
-                    val newStory = response.body() ?:
-                        throw UADAFServiceException("ITH", "fetchStory:emptyBody")
+                    val newStory = response.body() ?: throw UADAFServiceException("ITH", "fetchStory:emptyBody")
 
                     stories[id] = newStory
                     newStory

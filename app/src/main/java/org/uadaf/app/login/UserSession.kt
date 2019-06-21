@@ -1,7 +1,6 @@
 package org.uadaf.app.login
 
 import android.graphics.Bitmap
-import android.media.Image
 
 interface UserSession {
 

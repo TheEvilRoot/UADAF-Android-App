@@ -1,18 +1,19 @@
 package org.uadaf.app.ith.list
 
 
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_ith_stories_list.view.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 import org.uadaf.app.R
 import org.uadaf.app.internal.exceptions.ExceptionDispatcher
@@ -20,9 +21,8 @@ import org.uadaf.app.ith.ITHRepository
 import org.uadaf.app.ith.list.impl.ITHStoriesListItemAdapter
 import org.uadaf.app.ith.list.impl.ITHStoriesListPresenterImpl
 import org.uadaf.app.main.MainView
-import org.kodein.di.android.x.kodein
 
-class ITHStoriesListFragment : Fragment(),ITHStoriesListView ,KodeinAware {
+class ITHStoriesListFragment : Fragment(), ITHStoriesListView, KodeinAware {
 
     override val kodein: Kodein by kodein()
 
@@ -30,7 +30,13 @@ class ITHStoriesListFragment : Fragment(),ITHStoriesListView ,KodeinAware {
     private val exceptionDispatcher: ExceptionDispatcher by instance()
     private val mainView: MainView by instance()
 
-    private val presenter: ITHStoriesListPresenter by lazy { ITHStoriesListPresenterImpl(this, ithRepository, exceptionDispatcher) }
+    private val presenter: ITHStoriesListPresenter by lazy {
+        ITHStoriesListPresenterImpl(
+            this,
+            ithRepository,
+            exceptionDispatcher
+        )
+    }
     private val adapter: ITHStoriesListItemAdapter by lazy { ITHStoriesListItemAdapter(presenter) }
 
     override fun onCreateView(
@@ -77,7 +83,7 @@ class ITHStoriesListFragment : Fragment(),ITHStoriesListView ,KodeinAware {
     override fun updateStories(added: Boolean) {
         if (added) {
             adapter.notifyItemInserted(presenter.storiesCount() - 1)
-        } else{
+        } else {
             adapter.notifyDataSetChanged()
         }
     }

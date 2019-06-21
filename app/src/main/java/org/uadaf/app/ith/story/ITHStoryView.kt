@@ -2,7 +2,7 @@ package org.uadaf.app.ith.story
 
 import org.uadaf.app.internal.view.IErrorView
 
-interface ITHStoryView: IErrorView {
+interface ITHStoryView : IErrorView {
 
     fun displayInvalidData()
 

@@ -10,11 +10,11 @@ import org.uadaf.app.notificationcenter.data.Notification
 import org.uadaf.app.notificationcenter.data.NotificationAction
 import org.uadaf.app.notificationcenter.data.NotificationEvent
 
-class NotificationCenterPresenterImpl (
+class NotificationCenterPresenterImpl(
     private val notificationCenter: NotificationCenter,
     private val view: NotificationCenterView,
     private val exceptionDispatcher: ExceptionDispatcher
-): NotificationCenterPresenter {
+) : NotificationCenterPresenter {
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -24,7 +24,7 @@ class NotificationCenterPresenterImpl (
     override fun getNotification(pos: Int): Notification =
         notificationCenter.getNotification(pos)
 
-    override fun bindNotificationView(position: Int, view: NotificationRowView)  {
+    override fun bindNotificationView(position: Int, view: NotificationRowView) {
         val notification = notificationCenter.getNotification(position)
         view.setText(notification.text)
     }

@@ -9,7 +9,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceFactory {
 
-    inline fun <reified T> create(baseURL: String, interceptor: ConnectivityInterceptor, convertFactory: Converter.Factory = GsonConverterFactory.create()): T {
+    inline fun <reified T> create(
+        baseURL: String,
+        interceptor: ConnectivityInterceptor,
+        convertFactory: Converter.Factory = GsonConverterFactory.create()
+    ): T {
 
         val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)

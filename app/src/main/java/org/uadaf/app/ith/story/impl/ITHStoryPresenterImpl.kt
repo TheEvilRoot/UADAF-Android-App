@@ -1,5 +1,10 @@
 package org.uadaf.app.ith.story.impl
 
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,18 +16,13 @@ import org.uadaf.app.ith.*
 import org.uadaf.app.ith.data.ITHStory
 import org.uadaf.app.ith.story.ITHStoryPresenter
 import org.uadaf.app.ith.story.ITHStoryView
-import android.content.ComponentName
-import android.content.Context
-import android.content.pm.PackageManager
-import android.content.Intent
-import android.net.Uri
 
 
 class ITHStoryPresenterImpl(
     val repository: ITHRepository,
     val view: ITHStoryView,
     val exceptionDispatcher: ExceptionDispatcher
-): ITHStoryPresenter {
+) : ITHStoryPresenter {
 
     private var current: ITHStory? = null
 
@@ -38,8 +38,7 @@ class ITHStoryPresenterImpl(
         }
 
         trashBin.add(Single.fromCallable<ITHStory> {
-            repository.get(storyId) ?:
-                    repository.fetchStory(storyId)
+            repository.get(storyId) ?: repository.fetchStory(storyId)
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
             current = it
             view.displayStory(it.id)
@@ -58,8 +57,7 @@ class ITHStoryPresenterImpl(
 
     override fun like() {
         if (current != null) {
-            val id = current?.id?.toIntOrNull() ?:
-                return
+            val id = current?.id?.toIntOrNull() ?: return
             trashBin.add(Single.fromCallable<Boolean> {
                 repository.like(id)
                 return@fromCallable repository.isStoryLiked(id)
@@ -71,8 +69,7 @@ class ITHStoryPresenterImpl(
 
     override fun unlike() {
         if (current != null) {
-            val id = current?.id?.toIntOrNull() ?:
-                return
+            val id = current?.id?.toIntOrNull() ?: return
             trashBin.add(Single.fromCallable<Boolean> {
                 repository.unlike(id)
                 return@fromCallable repository.isStoryLiked(id)
@@ -85,10 +82,11 @@ class ITHStoryPresenterImpl(
     override fun bindStoryTitle(rowView: ITHStoryTitleView) {
         if (current != null) {
             rowView.setTitle(current!!.id, current!!.title)
-        } else{
+        } else {
             rowView.setTitle("", "")
         }
     }
+
     override fun bindStoryTags(rowView: ITHStoryTagsView) {
         rowView.clearTags()
         current?.tags?.forEach {
@@ -96,6 +94,7 @@ class ITHStoryPresenterImpl(
         }
 
     }
+
     override fun bindStoryText(rowView: ITHStoryTextView) {
         if (current != null) {
             rowView.setText(current!!.text)
@@ -105,17 +104,16 @@ class ITHStoryPresenterImpl(
     }
 
     override fun bindStoryInfo(rowView: ITHStoryInfoView) {
-        if (current != null){
+        if (current != null) {
             rowView.setDate(current!!.date)
-        } else  {
+        } else {
             rowView.setDate("")
         }
     }
 
     override fun requestStoryLikedState() {
         if (current != null) {
-            val id = current?.id?.toIntOrNull() ?:
-                return
+            val id = current?.id?.toIntOrNull() ?: return
             view.disableLike()
             trashBin.add(Single.fromCallable<Boolean> {
                 repository.isStoryLiked(id)
@@ -136,13 +134,18 @@ class ITHStoryPresenterImpl(
 
         if (current != null) {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://ithappens.me/story/${current!!.id}"))
-            val defaultResolution = applicationContext.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
+            val defaultResolution =
+                applicationContext.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
 
             if (defaultResolution.activityInfo.packageName == applicationContext.packageName) {
                 val browseIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://"))
-                val browseResolution = applicationContext.packageManager.resolveActivity(browseIntent, PackageManager.MATCH_DEFAULT_ONLY)
+                val browseResolution =
+                    applicationContext.packageManager.resolveActivity(browseIntent, PackageManager.MATCH_DEFAULT_ONLY)
 
-                intent.component = ComponentName(browseResolution.activityInfo.applicationInfo.packageName, browseResolution.activityInfo.name)
+                intent.component = ComponentName(
+                    browseResolution.activityInfo.applicationInfo.packageName,
+                    browseResolution.activityInfo.name
+                )
             }
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             applicationContext.startActivity(intent)

@@ -1,76 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".ith.story.ITHStoryFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ith.story.ITHStoryFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="0dp"
-                                                       android:layout_height="0dp"
-                                                       app:layout_constraintBottom_toBottomOf="parent"
-                                                       app:layout_constraintEnd_toEndOf="parent"
-                                                       app:layout_constraintStart_toStartOf="parent"
-                                                       app:layout_constraintTop_toTopOf="parent"
-                                                       android:layout_marginTop="24dp"
-                                                       android:layout_marginBottom="?actionBarSize">
-    <androidx.appcompat.widget.Toolbar
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-    <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/recyclerView" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="1.0"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
-    <org.uadaf.app.internal.view.fabs.FAB
-            android:src="@drawable/ic_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true" android:id="@+id/fabLike"
-            app:backgroundTint="?attr/colorLike" app:rippleColor="?attr/colorPrimary"
-            android:tint="?attr/colorBackground" android:focusable="true"
-            android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <org.uadaf.app.internal.view.fabs.FAB
-            android:src="@drawable/ic_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true" android:id="@+id/fabUnlike"
-            app:backgroundTint="?attr/colorMain" app:rippleColor="?attr/colorMain"
-            android:tint="?attr/colorLike" android:focusable="true"
-            android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.502" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <org.uadaf.app.internal.view.fabs.FAB
-            android:src="@drawable/ic_fast_forward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true" android:id="@+id/fabJump"
-            app:backgroundTint="?attr/colorPrimaryDark" app:rippleColor="?attr/colorIcons"
-            android:tint="?attr/colorIcons" android:focusable="true"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"/>
-    <org.uadaf.app.internal.view.fabs.FAB
-            android:src="@drawable/ic_language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true" android:id="@+id/fabWeb"
-            app:backgroundTint="?attr/colorPrimaryDark" app:rippleColor="?attr/colorIcons"
-            android:tint="?attr/colorIcons" android:focusable="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/fabJump"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		android:layout_marginTop="24dp"
+		android:layout_marginBottom="?actionBarSize">
+
+		<androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:background="?attr/colorPrimary"
+			android:theme="?attr/actionBarTheme"
+			android:minHeight="?attr/actionBarSize"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintStart_toStartOf="parent"/>
+
+		<androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintHorizontal_bias="0.0"
+			app:layout_constraintVertical_bias="1.0"
+			app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+
+		<org.uadaf.app.internal.view.fabs.FAB android:id="@+id/fabLike"
+			android:src="@drawable/ic_favorite"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:clickable="true"
+			app:backgroundTint="?attr/colorLike"
+			app:rippleColor="?attr/colorPrimary"
+			android:tint="?attr/colorBackground"
+			android:focusable="true"
+			android:layout_marginBottom="16dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			android:layout_marginEnd="8dp"
+			android:layout_marginStart="8dp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"/>
+
+		<org.uadaf.app.internal.view.fabs.FAB android:id="@+id/fabUnlike"
+			android:src="@drawable/ic_favorite"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:clickable="true"
+			app:backgroundTint="?attr/colorMain"
+			app:rippleColor="?attr/colorMain"
+			android:tint="?attr/colorLike"
+			android:focusable="true"
+			android:layout_marginBottom="16dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			android:layout_marginEnd="8dp"
+			android:layout_marginStart="8dp"
+			app:layout_constraintHorizontal_bias="0.502"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"/>
+
+		<org.uadaf.app.internal.view.fabs.FAB android:id="@+id/fabJump"
+			android:src="@drawable/ic_fast_forward"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:clickable="true"
+			app:backgroundTint="?attr/colorPrimaryDark"
+			app:rippleColor="?attr/colorIcons"
+			android:tint="?attr/colorIcons"
+			android:focusable="true"
+			android:layout_marginBottom="8dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			android:layout_marginEnd="16dp"
+			app:layout_constraintEnd_toEndOf="parent"/>
+
+		<org.uadaf.app.internal.view.fabs.FAB android:id="@+id/fabWeb"
+			android:src="@drawable/ic_language"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:clickable="true"
+			app:backgroundTint="?attr/colorPrimaryDark"
+			app:rippleColor="?attr/colorIcons"
+			android:tint="?attr/colorIcons"
+			android:focusable="true"
+			android:layout_marginBottom="8dp"
+			android:layout_marginEnd="16dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintBottom_toTopOf="@+id/fabJump"/>
+	</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

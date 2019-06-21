@@ -3,7 +3,7 @@ package org.uadaf.app.ith
 import android.graphics.Bitmap
 import org.uadaf.app.internal.view.IErrorView
 
-interface ITHView: IErrorView {
+interface ITHView : IErrorView {
 
     fun displayStory()
 

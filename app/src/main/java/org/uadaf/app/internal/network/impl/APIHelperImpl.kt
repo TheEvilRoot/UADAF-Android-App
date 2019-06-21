@@ -5,10 +5,10 @@ import org.uadaf.app.internal.NoConnectivityException
 import org.uadaf.app.internal.network.APIHelper
 import org.uadaf.app.internal.service.UADAFService
 
-class APIHelperImpl (
+class APIHelperImpl(
     context: Context,
     private val service: UADAFService
-): APIHelper {
+) : APIHelper {
 
     private val applicationContext = context.applicationContext
 

@@ -1,10 +1,10 @@
 package org.uadaf.app.dashboard
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
@@ -39,7 +39,10 @@ class DashboardFragment : Fragment(), KodeinAware, DashboardView {
         view.apply {
             dashboardRecyclerView.layoutManager = GridLayoutManager(context, presenter.getMenuItemsCount() / 2)
             dashboardRecyclerView.adapter = adapter
-            val values = preferencesProvider.stringSet("graph", mutableSetOf("10", "30", "25", "32", "13", "5", "18", "36", "20", "30", "28", "27", "29"))
+            val values = preferencesProvider.stringSet(
+                "graph",
+                mutableSetOf("10", "30", "25", "32", "13", "5", "18", "36", "20", "30", "28", "27", "29")
+            )
             gradientChart.chartValues = values.mapNotNull(String::toFloatOrNull).toTypedArray()
         }
     }

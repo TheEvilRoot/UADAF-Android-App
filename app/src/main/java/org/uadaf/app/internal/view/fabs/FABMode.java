@@ -1,8 +1,5 @@
 package org.uadaf.app.internal.view.fabs;
 
-import android.view.View;
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 

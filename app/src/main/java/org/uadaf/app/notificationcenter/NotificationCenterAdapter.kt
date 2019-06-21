@@ -5,15 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.uadaf.app.R
 import org.uadaf.app.notificationcenter.impl.NotificationViewHolder
-import java.lang.RuntimeException
 
 class NotificationCenterAdapter(
     private val presenter: NotificationCenterPresenter
-): RecyclerView.Adapter<NotificationViewHolder>() {
+) : RecyclerView.Adapter<NotificationViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder =
-        when(viewType) {
-            0 -> NotificationViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.notification_layout, parent, false))
+        when (viewType) {
+            0 -> NotificationViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.notification_layout,
+                    parent,
+                    false
+                )
+            )
             else -> throw RuntimeException("Unimplemented view type of notification center adapter")
         }
 

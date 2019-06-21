@@ -9,7 +9,7 @@ import quoter.Quote
 
 class QuoterRepositoryImpl(
     private val quoterApi: QuoterAPI
-): QuoterRepository {
+) : QuoterRepository {
 
     private var sorting: Sorting = Sorting.Authors
     private var direction = Direction.Ascending
@@ -64,6 +64,6 @@ class QuoterRepositoryImpl(
     }
 
     override fun sectionNameBySorting(quotePosition: Int): String =
-            sorting.section(getQuote(quotePosition))
+        sorting.section(getQuote(quotePosition))
 
 }

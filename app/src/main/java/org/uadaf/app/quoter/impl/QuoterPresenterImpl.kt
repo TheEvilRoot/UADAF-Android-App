@@ -14,12 +14,12 @@ import org.uadaf.app.quoter.QuoterRepository
 import org.uadaf.app.quoter.QuoterView
 import java.util.*
 
-class QuoterPresenterImpl (
+class QuoterPresenterImpl(
     private val notificationCenter: NotificationCenter,
     private val quoterRepository: QuoterRepository,
     private val view: QuoterView,
     private val exceptionDispatcher: ExceptionDispatcher
-): QuoterPresenter {
+) : QuoterPresenter {
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -37,7 +37,7 @@ class QuoterPresenterImpl (
 
         view.setID(quote.id)
         view.setAdder(quote.adder)
-        view.setAuthor(quote.authors.joinToString(separator=", "))
+        view.setAuthor(quote.authors.joinToString(separator = ", "))
         view.setText(quote.content)
 
         if (quote.editedAt >= 0 && quote.editedAt > 0) {
@@ -50,7 +50,8 @@ class QuoterPresenterImpl (
                     calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE))
+                    calendar.get(Calendar.MINUTE)
+                )
             view.setEdited(quote.editedBy, editedAt)
         } else {
             view.setNotEdited()
@@ -100,6 +101,6 @@ class QuoterPresenterImpl (
     }
 
     override fun repoName(): String =
-            repoName
+        repoName
 
 }

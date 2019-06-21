@@ -12,17 +12,17 @@ import org.uadaf.app.ith.ITHStoryTagsView
 import org.uadaf.app.ith.ITHStoryTextView
 import org.uadaf.app.ith.ITHStoryTitleView
 
-abstract class ITHStoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+abstract class ITHStoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-class ITHStoryTitleViewHolder(itemView: View): ITHStoryViewHolder(itemView), ITHStoryTitleView {
-    override fun setTitle(id: String , title: String) {
+class ITHStoryTitleViewHolder(itemView: View) : ITHStoryViewHolder(itemView), ITHStoryTitleView {
+    override fun setTitle(id: String, title: String) {
         with(itemView) {
             titleView.text = "$id: $title"
         }
     }
 }
 
-class ITHStoryInfoViewHolder(itemView: View): ITHStoryViewHolder(itemView), ITHStoryInfoView {
+class ITHStoryInfoViewHolder(itemView: View) : ITHStoryViewHolder(itemView), ITHStoryInfoView {
     override fun setDate(date: String) {
         with(itemView) {
             dateView.text = date
@@ -30,7 +30,7 @@ class ITHStoryInfoViewHolder(itemView: View): ITHStoryViewHolder(itemView), ITHS
     }
 }
 
-class ITHStoryTextViewHolder(itemView: View): ITHStoryViewHolder(itemView), ITHStoryTextView {
+class ITHStoryTextViewHolder(itemView: View) : ITHStoryViewHolder(itemView), ITHStoryTextView {
     override fun setText(text: String) {
         with(itemView) {
             textView.text = text
@@ -38,7 +38,7 @@ class ITHStoryTextViewHolder(itemView: View): ITHStoryViewHolder(itemView), ITHS
     }
 }
 
-class ITHStoryTagsViewHolder(itemView: View): ITHStoryViewHolder(itemView), ITHStoryTagsView {
+class ITHStoryTagsViewHolder(itemView: View) : ITHStoryViewHolder(itemView), ITHStoryTagsView {
 
     override fun clearTags() {
         with(itemView) {

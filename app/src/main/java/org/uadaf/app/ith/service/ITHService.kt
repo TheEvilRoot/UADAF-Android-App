@@ -8,7 +8,7 @@ import retrofit2.http.*
 interface ITHService {
 
     @GET("login/{name}")
-    fun login (
+    fun login(
         @Path("name") username: String
     ): Call<ITHUser>
 

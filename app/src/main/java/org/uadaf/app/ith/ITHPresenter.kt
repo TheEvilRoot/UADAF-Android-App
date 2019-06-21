@@ -2,7 +2,7 @@ package org.uadaf.app.ith
 
 import org.uadaf.app.ith.data.ITHStory
 
-interface ITHPresenter: ITHRowViewPresenter {
+interface ITHPresenter : ITHRowViewPresenter {
 
     fun preapre()
 

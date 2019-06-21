@@ -12,11 +12,11 @@ import org.uadaf.app.ith.*
 import org.uadaf.app.ith.data.ITHStory
 import org.uadaf.app.ith.data.ITHUser
 
-class ITHPresenterImpl (
+class ITHPresenterImpl(
     private val repository: ITHRepository,
     private val view: ITHView,
     private val exceptionDispatcher: ExceptionDispatcher
-): ITHPresenter {
+) : ITHPresenter {
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private var userImage: Bitmap? = null
@@ -28,7 +28,7 @@ class ITHPresenterImpl (
                 ?: return view.displayUsernameDialog()
 
             view.startLoading()
-            compositeDisposable.add(Single.fromCallable <ITHUser> {
+            compositeDisposable.add(Single.fromCallable<ITHUser> {
                 repository.initUser(savedUsername)
             }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
                 view.stopLoading()
@@ -82,7 +82,7 @@ class ITHPresenterImpl (
 
     override fun loadNext() {
         compositeDisposable.add(Single.fromCallable<Int> {
-            if (!isErrored){
+            if (!isErrored) {
                 repository.increaseCurrent()
             }
             return@fromCallable repository.getCurrentID()
@@ -138,6 +138,7 @@ class ITHPresenterImpl (
             rowView.setTitle(id, title)
         }
     }
+
     override fun bindStoryTags(rowView: ITHStoryTagsView) {
         if (repository.getCurrentStory() == null) {
             loadCurrent()
@@ -149,6 +150,7 @@ class ITHPresenterImpl (
             }
         }
     }
+
     override fun bindStoryText(rowView: ITHStoryTextView) {
         if (repository.getCurrentStory() == null) {
             loadCurrent()
@@ -157,6 +159,7 @@ class ITHPresenterImpl (
             rowView.setText(text)
         }
     }
+
     override fun bindStoryInfo(rowView: ITHStoryInfoView) {
         if (repository.getCurrentStory() == null) {
             loadCurrent()
@@ -179,7 +182,7 @@ class ITHPresenterImpl (
 
     override fun requestUserImage() {
         // TODO backend
-        compositeDisposable.add(Single.fromCallable <Bitmap> {
+        compositeDisposable.add(Single.fromCallable<Bitmap> {
             userImage ?: Picasso.get().load("http://52.48.142.75/images/gear.png").get()
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
             userImage = it

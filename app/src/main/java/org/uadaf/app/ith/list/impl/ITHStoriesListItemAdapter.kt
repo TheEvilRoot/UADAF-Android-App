@@ -11,10 +11,16 @@ import org.uadaf.app.ith.list.ITHStoriesListRowView
 
 class ITHStoriesListItemAdapter(
     val presenter: ITHStoriesListPresenter
-): RecyclerView.Adapter<ITHStoriesListItemAdapter.ITHStoriesListItemViewHolder>() {
+) : RecyclerView.Adapter<ITHStoriesListItemAdapter.ITHStoriesListItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ITHStoriesListItemViewHolder =
-        ITHStoriesListItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.ith_stories_list_item_layout, parent, false))
+        ITHStoriesListItemViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.ith_stories_list_item_layout,
+                parent,
+                false
+            )
+        )
 
     override fun getItemCount(): Int =
         presenter.storiesCount()
@@ -24,7 +30,7 @@ class ITHStoriesListItemAdapter(
     }
 
 
-    class ITHStoriesListItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), ITHStoriesListRowView {
+    class ITHStoriesListItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), ITHStoriesListRowView {
         override fun setId(id: String) {
             itemView.run {
                 idView.text = id

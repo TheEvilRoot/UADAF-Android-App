@@ -1,7 +1,6 @@
 package org.uadaf.app.ith.list.impl
 
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -16,7 +15,7 @@ class ITHStoriesListPresenterImpl(
     private val view: ITHStoriesListView,
     private val repository: ITHRepository,
     private val exceptionDispatcher: ExceptionDispatcher
-): ITHStoriesListPresenter {
+) : ITHStoriesListPresenter {
 
     private var mode: Boolean = false
     private val trashBin: CompositeDisposable = CompositeDisposable()

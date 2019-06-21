@@ -50,7 +50,8 @@ class ITHStoryFragment : Fragment(), KodeinAware, ITHStoryView {
             toolbar.setupWithNavController(findNavController())
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = adapter
-            val decor = OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
+            val decor =
+                OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
             recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)

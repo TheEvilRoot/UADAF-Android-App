@@ -2,13 +2,13 @@ package org.uadaf.app.ith
 
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -65,7 +65,10 @@ class ITHFragment : Fragment(), Toolbar.OnMenuItemClickListener, ITHView, Kodein
             fabNext.setOnClickListener {
                 presenter.loadNext()
             }
-            val decor = OverScrollDecoratorHelper.setUpOverScroll(ithRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
+            val decor = OverScrollDecoratorHelper.setUpOverScroll(
+                ithRecyclerView,
+                OverScrollDecoratorHelper.ORIENTATION_VERTICAL
+            )
             ithRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)

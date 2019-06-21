@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.quote_layout.view.*
 import org.uadaf.app.quoter.QuoteRowView
 
-class QuoteViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), QuoteRowView {
+class QuoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), QuoteRowView {
     override fun setID(id: Int) {
         with(itemView) {
             idView.text = "#$id"

@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import androidx.annotation.IdRes
 import org.uadaf.app.R
-import org.uadaf.app.internal.ITHStoryDoesNotExists
 import org.uadaf.app.internal.NoConnectivityException
 import org.uadaf.app.internal.exceptions.ExceptionDispatcher
 import org.uadaf.app.internal.view.IErrorView
@@ -17,8 +16,8 @@ class ExceptionDispatcherImpl(
     context: Context,
     private val mainView: MainView,
     private val notificationCenter: NotificationCenter,
-    private val preferencesProvider: PreferencesProvider         
-): ExceptionDispatcher {
+    private val preferencesProvider: PreferencesProvider
+) : ExceptionDispatcher {
 
     private val applicationContext: Context = context.applicationContext
 
@@ -32,7 +31,11 @@ class ExceptionDispatcherImpl(
         withView.displayError(exceptionMessage)
 
 
-        if (preferencesProvider.boolean(preferencesProvider.preferenceName(R.string.preference_exceptions_notification), true)) {
+        if (preferencesProvider.boolean(
+                preferencesProvider.preferenceName(R.string.preference_exceptions_notification),
+                true
+            )
+        ) {
             notificationCenter.postNotification(Notification(exceptionMessage, fragment))
         }
     }

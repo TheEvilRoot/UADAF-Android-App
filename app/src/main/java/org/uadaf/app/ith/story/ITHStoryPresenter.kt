@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import org.uadaf.app.ith.ITHRowViewPresenter
 
-interface ITHStoryPresenter: ITHRowViewPresenter {
+interface ITHStoryPresenter : ITHRowViewPresenter {
 
     fun load(arguments: Bundle?)
 
