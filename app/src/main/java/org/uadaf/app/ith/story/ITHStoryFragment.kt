@@ -47,7 +47,7 @@ class ITHStoryFragment : Fragment(), KodeinAware, ITHStoryView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.run {
-            toolbar.setupWithNavController(findNavController())
+            toolbarView.setupWithNavController(findNavController())
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = adapter
             val decor =
@@ -118,7 +118,7 @@ class ITHStoryFragment : Fragment(), KodeinAware, ITHStoryView {
     override fun displayStory(storyId: String) {
         adapter.notifyDataSetChanged()
         view?.run {
-            toolbar.title = "#$storyId"
+            toolbarView.title = "#$storyId"
         }
     }
 

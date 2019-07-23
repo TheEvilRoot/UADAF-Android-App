@@ -11,10 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.afollestad.materialdialogs.callbacks.onShow
+import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
 import com.afollestad.materialdialogs.input.getInputField
 import com.afollestad.materialdialogs.input.input
+import com.jakewharton.rxbinding3.widget.afterTextChangeEvents
+import com.jakewharton.rxbinding3.widget.textChanges
 import kotlinx.android.synthetic.main.fragment_quoter.*
 import kotlinx.android.synthetic.main.fragment_quoter.view.*
+import kotlinx.android.synthetic.main.fragment_quoter_edit_repo.view.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -44,6 +50,30 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
         )
     }
     private val adapter: QuoterAdapter by lazy { QuoterAdapter(presenter) }
+
+    private val editRepositoryFragment by lazy {
+        val dialog = MaterialDialog(windowContext = requireContext(), dialogBehavior = BottomSheet(LayoutMode.WRAP_CONTENT))
+        with (dialog) {
+            cornerRadius(16f)
+            title(text = "Quoter repository name")
+            customView(R.layout.fragment_quoter_edit_repo)
+            getCustomView().run {
+                editText.textChanges().subscribe { button2.isEnabled = it.isNotBlank() }
+                button.setOnClickListener { Toast.makeText(context, "Button", Toast.LENGTH_SHORT).show() }
+                button2.setOnClickListener {
+                    val newRepo = editText.text.toString()
+                    if (newRepo != presenter.repoName()) {
+                        presenter.updateRepo(newRepo)
+                    }
+                    this@with.dismiss()
+                }
+            }
+            onShow {
+                getCustomView().run { editText.setText(presenter.repoName()) }
+            }
+        }
+        dialog
+    }
 
     private val fabMenuMode: FABMode = FABMode(R.string.menu_title, R.drawable.ic_menu) {
         changeMenu(fabCloseMode)
@@ -84,15 +114,8 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
                 }
             })
             quoterRecyclerView.setFastScrollEnabled(true)
-            toolbar.setOnClickListener {
-                MaterialDialog(windowContext = context, dialogBehavior = BottomSheet(LayoutMode.WRAP_CONTENT)).show {
-                    cornerRadius(16f)
-                    title(text = "Quoter repository")
-                    input(hint = "Repository name... (uadaf by default)", prefill = presenter.repoName())
-                    positiveButton(text = "Submit") {
-                        presenter.updateRepo(getInputField().text.toString())
-                    }
-                }
+            repoNameViewWrapper.setOnClickListener {
+                editRepositoryFragment.show()
             }
         }
 
@@ -151,11 +174,18 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
     }
 
     override fun displayLoading() {
-        mainActivityView.displayLoading()
+        view?.run {
+            progressBar.visibility = View.VISIBLE
+            progressBar.isIndeterminate = true
+            titleView.visibility = View.GONE
+        }
     }
 
     override fun stopLoading() {
-        mainActivityView.stopLoading()
+        view?.run {
+            progressBar.visibility = View.INVISIBLE
+            titleView.visibility = View.VISIBLE
+        }
     }
 
     override fun repoError(message: String) {

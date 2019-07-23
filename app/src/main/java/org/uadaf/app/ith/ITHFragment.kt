@@ -13,7 +13,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_ith.*
 import me.everything.android.ui.overscroll.IOverScrollState
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
@@ -23,8 +22,6 @@ import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 import org.uadaf.app.R
 import org.uadaf.app.internal.eventbus.EventBus
-import org.uadaf.app.internal.eventbus.EventType
-import org.uadaf.app.internal.eventbus.impl.BaseEventAction
 import org.uadaf.app.internal.exceptions.ExceptionDispatcher
 import org.uadaf.app.ith.impl.ITHPresenterImpl
 import org.uadaf.app.main.MainView
@@ -55,8 +52,8 @@ class ITHFragment : Fragment(), Toolbar.OnMenuItemClickListener, ITHView, Kodein
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.run {
-            toolbar.inflateMenu(R.menu.ith_menu)
-            toolbar.setOnMenuItemClickListener(this@ITHFragment)
+            toolbarView.inflateMenu(R.menu.ith_menu)
+            toolbarView.setOnMenuItemClickListener(this@ITHFragment)
             ithRecyclerView.layoutManager = LinearLayoutManager(this.context)
             ithRecyclerView.adapter = adapter
             fabLike.setOnClickListener {

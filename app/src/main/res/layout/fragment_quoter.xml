@@ -16,97 +16,206 @@
 		android:layout_marginTop="24dp"
 		android:layout_marginBottom="?actionBarSize">
 
-		<com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView android:id="@+id/quoterRecyclerView"
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent">
+
+			<org.uadaf.app.internal.view.fabs.ModesFAB
+				android:id="@+id/fabMenu"
+				style="@style/Widget.MaterialComponents.FloatingActionButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="8dp"
+				android:layout_marginBottom="8dp"
+				android:clickable="true"
+				android:focusable="true"
+				android:src="@drawable/ic_menu"
+				android:tint="?attr/colorIcons"
+				app:backgroundTint="?attr/colorPrimaryDark"
+				app:fabSize="normal"
+				app:layout_anchorGravity="right|bottom"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:rippleColor="?attr/colorIcons" />
+
+			<org.uadaf.app.internal.view.fabs.FAB
+				android:id="@+id/fabSearch"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="8dp"
+				android:layout_marginBottom="8dp"
+				android:clickable="true"
+				android:focusable="true"
+				android:src="@drawable/ic_search"
+				android:tint="?attr/colorIcons"
+				app:backgroundTint="?attr/colorPrimaryDark"
+				app:layout_constraintBottom_toTopOf="@+id/fabMenu"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:rippleColor="?attr/colorIcons" />
+
+			<org.uadaf.app.internal.view.fabs.FAB
+				android:id="@+id/fabAdd"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="8dp"
+				android:layout_marginBottom="8dp"
+				android:clickable="true"
+				android:focusable="true"
+				android:src="@drawable/ic_add"
+				android:tint="?attr/colorIcons"
+				app:backgroundTint="?attr/colorPrimaryDark"
+				app:layout_constraintBottom_toTopOf="@+id/fabSearch"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:rippleColor="?attr/colorIcons" />
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<androidx.coordinatorlayout.widget.CoordinatorLayout
 			android:layout_width="0dp"
 			android:layout_height="0dp"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			android:scrollbars="none"
-			app:layout_behavior="@string/appbar_scrolling_view_behavior"
-			app:fastScrollPopupTextSize="15sp"
-			app:fastScrollPopupBackgroundSize="24dp"
-			app:fastScrollPopupBgColor="@color/colorPrimaryDark"
-			app:fastScrollThumbColor="@color/colorPrimaryDark"
-			tools:listitem="@layout/quote_layout"
-			app:layout_constraintTop_toTopOf="parent" />
+			app:layout_constraintTop_toTopOf="parent" >
 
-		<org.uadaf.app.internal.view.fabs.ModesFAB android:id="@+id/fabMenu"
-			android:src="@drawable/ic_menu"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:clickable="true"
-			app:fabSize="normal"
-			style="@style/Widget.MaterialComponents.FloatingActionButton"
-			android:focusable="true"
-			app:layout_anchorGravity="right|bottom"
-			app:layout_anchor="@+id/quoterRecyclerView"
-			app:rippleColor="?attr/colorIcons"
-			app:backgroundTint="?attr/colorPrimaryDark"
-			android:tint="?attr/colorIcons"
-			app:layout_constraintBottom_toBottomOf="parent"
-			android:layout_marginEnd="8dp"
-			android:layout_marginBottom="8dp"
-			app:layout_constraintEnd_toEndOf="parent"/>
+			<com.google.android.material.appbar.AppBarLayout
+				android:id="@+id/appBarLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
 
-		<org.uadaf.app.internal.view.fabs.FAB android:id="@+id/fabSearch"
-			android:src="@drawable/ic_search"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:clickable="true"
-			android:layout_marginEnd="8dp"
-			app:layout_constraintEnd_toEndOf="parent"
-			android:layout_marginBottom="8dp"
-			app:layout_constraintBottom_toTopOf="@+id/fabMenu"
-			app:backgroundTint="?attr/colorPrimaryDark"
-			app:rippleColor="?attr/colorIcons"
-			android:tint="?attr/colorIcons"
-			android:focusable="true"/>
+				<androidx.appcompat.widget.Toolbar
+					android:id="@+id/actualToolbar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="?attr/colorMain"
+					android:elevation="0dp"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:layout_scrollFlags="scroll|enterAlways|snap">
 
-		<org.uadaf.app.internal.view.fabs.FAB android:id="@+id/fabAdd"
-			android:src="@drawable/ic_add"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:clickable="true"
-			android:layout_marginEnd="8dp"
-			app:layout_constraintEnd_toEndOf="parent"
-			android:layout_marginBottom="8dp"
-			app:layout_constraintBottom_toTopOf="@+id/fabSearch"
-			app:backgroundTint="?attr/colorPrimaryDark"
-			app:rippleColor="?attr/colorIcons"
-			android:tint="?attr/colorIcons"
-			android:focusable="true"/>
+					<androidx.constraintlayout.widget.ConstraintLayout
+						android:id="@+id/toolbarView"
+						android:layout_width="match_parent"
+						android:layout_height="64dp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toTopOf="parent">
 
-		<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/toolbar"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:background="@drawable/bg_badge"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			android:layout_marginTop="8dp">
-			<TextView android:id="@+id/repoNameView"
-				tools:text="TextView"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textAlignment="center"
-				android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-				app:layout_constraintTop_toTopOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
+						<TextView
+							android:id="@+id/titleView"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginStart="8dp"
+							android:fontFamily="sans-serif-black"
+							android:text="@string/quoter_title"
+							android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+							android:textSize="30sp"
+							app:layout_constraintBottom_toBottomOf="parent"
+							app:layout_constraintStart_toStartOf="parent"
+							app:layout_constraintTop_toTopOf="parent" />
+
+						<FrameLayout
+							android:id="@+id/repoNameViewWrapper"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginEnd="8dp"
+							android:background="@drawable/bg_badge"
+							android:backgroundTint="?attr/colorPrimaryDark"
+							android:elevation="4dp"
+							android:orientation="horizontal"
+							app:layout_constraintBottom_toBottomOf="parent"
+							app:layout_constraintEnd_toEndOf="parent"
+							app:layout_constraintTop_toTopOf="parent">
+
+							<TextView
+								android:id="@+id/repoNameView"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:background="?attr/selectableItemBackgroundBorderless"
+								android:drawablePadding="8dp"
+								android:textAlignment="center"
+								android:textAllCaps="true"
+								android:textAppearance="@style/TextAppearance.AppCompat.Large"
+								android:textColor="?attr/colorIcons"
+								android:textSize="18sp"
+								app:drawableLeftCompat="@drawable/ic_edit"
+								app:drawableTint="?attr/colorIcons"
+								tools:layout_editor_absoluteY="8dp"
+								tools:text="UADAF" />
+
+						</FrameLayout>
+
+						<FrameLayout
+							android:id="@+id/sortingWrapper"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginEnd="8dp"
+							android:background="@drawable/bg_badge"
+							android:backgroundTint="?attr/colorPrimaryDark"
+							android:elevation="4dp"
+							android:orientation="horizontal"
+							app:layout_constraintBottom_toBottomOf="parent"
+							app:layout_constraintEnd_toStartOf="@+id/repoNameViewWrapper"
+							app:layout_constraintTop_toTopOf="parent">
+
+							<TextView
+								android:id="@+id/sortingView"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:background="?attr/selectableItemBackgroundBorderless"
+								android:drawablePadding="8dp"
+								android:text="Name"
+								android:textAlignment="center"
+								android:textAllCaps="true"
+								android:textAppearance="@style/TextAppearance.AppCompat.Large"
+								android:textColor="?attr/colorIcons"
+								android:textSize="18sp"
+								app:drawableLeftCompat="@drawable/ic_keyboard_arrow_down"
+								app:drawableTint="?attr/colorIcons"
+								tools:layout_editor_absoluteY="8dp" />
+
+						</FrameLayout>
+
+						<ProgressBar
+							android:id="@+id/progressBar"
+							style="?android:attr/progressBarStyle"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginStart="8dp"
+							android:animateLayoutChanges="true"
+							android:indeterminate="true"
+							android:indeterminateTint="?attr/colorPrimaryDark"
+							android:progressTint="?attr/colorSecondary"
+							android:visibility="gone"
+							app:layout_constraintBottom_toBottomOf="parent"
+							app:layout_constraintStart_toStartOf="parent"
+							app:layout_constraintTop_toTopOf="parent" />
+
+					</androidx.constraintlayout.widget.ConstraintLayout>
+				</androidx.appcompat.widget.Toolbar>
+			</com.google.android.material.appbar.AppBarLayout>
+
+			<com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
+				android:id="@+id/quoterRecyclerView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:backgroundTint="?attr/colorBackground"
+				android:scrollbars="none"
+				app:fastScrollPopupBackgroundSize="24dp"
+				app:fastScrollPopupBgColor="@color/colorPrimaryDark"
+				app:fastScrollPopupTextSize="15sp"
+				app:fastScrollThumbColor="@color/colorPrimaryDark"
+				app:fastScrollTrackColor="@android:color/transparent"
+				app:layout_behavior="@string/appbar_scrolling_view_behavior"
+				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
-				android:layout_marginTop="8dp"
-				app:layout_constraintBottom_toBottomOf="parent"
-				android:layout_marginBottom="8dp"
-				android:textAllCaps="true"/>
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/actualToolbar"
+				tools:listitem="@layout/quote_layout" />
 
-			<ImageView android:id="@+id/imageButton"
-				android:src="@drawable/ic_edit"
-				android:layout_width="16dp"
-				android:layout_height="16dp"
-				app:layout_constraintStart_toEndOf="@+id/repoNameView"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				android:layout_marginStart="8dp"/>
-		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

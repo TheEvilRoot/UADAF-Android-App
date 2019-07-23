@@ -52,12 +52,12 @@ class ITHStoriesListFragment : Fragment(), ITHStoriesListView, KodeinAware {
         presenter.setMode(onlyLiked)
 
         view.run {
-            toolbar.setupWithNavController(findNavController())
+            toolbarView.setupWithNavController(findNavController())
 
             if (onlyLiked) {
-                toolbar.title = context.getString(R.string.liked_stories_title)
+                toolbarView.title = context.getString(R.string.liked_stories_title)
             } else {
-                toolbar.title = context.getString(R.string.all_stories_title)
+                toolbarView.title = context.getString(R.string.all_stories_title)
             }
 
             setupRecyclerView()
