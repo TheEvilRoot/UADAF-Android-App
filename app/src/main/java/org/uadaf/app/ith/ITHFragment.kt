@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_ith.*
 import me.everything.android.ui.overscroll.IOverScrollState
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
@@ -20,6 +22,9 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 import org.uadaf.app.R
+import org.uadaf.app.internal.eventbus.EventBus
+import org.uadaf.app.internal.eventbus.EventType
+import org.uadaf.app.internal.eventbus.impl.BaseEventAction
 import org.uadaf.app.internal.exceptions.ExceptionDispatcher
 import org.uadaf.app.ith.impl.ITHPresenterImpl
 import org.uadaf.app.main.MainView
@@ -28,6 +33,7 @@ import org.uadaf.app.main.MainView
 class ITHFragment : Fragment(), Toolbar.OnMenuItemClickListener, ITHView, KodeinAware {
     override val kodein: Kodein by kodein()
 
+    private val eventBus: EventBus by instance()
     private val repository: ITHRepository by instance()
     private val exceptionDispatcher: ExceptionDispatcher by instance()
     private val presenter by lazy { ITHPresenterImpl(repository, this@ITHFragment, exceptionDispatcher) }

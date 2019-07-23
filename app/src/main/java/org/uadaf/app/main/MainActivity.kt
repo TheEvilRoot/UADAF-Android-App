@@ -1,12 +1,14 @@
 package org.uadaf.app.main
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.gmail.samehadar.iosdialog.IOSDialog
 import com.jetradar.permissions.PermissionsActivityDelegate
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -15,6 +17,9 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import org.uadaf.app.R
 import org.uadaf.app.UADAF
+import org.uadaf.app.internal.eventbus.EventBus
+import org.uadaf.app.internal.eventbus.EventType
+import org.uadaf.app.internal.eventbus.impl.BaseEventAction
 import org.uadaf.app.internal.exceptions.ExceptionDispatcher
 import org.uadaf.app.internal.exceptions.impl.ExceptionDispatcherImpl
 import org.uadaf.app.main.impl.MainPresenterImpl
@@ -55,6 +60,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     private val presenter: MainPresenter by instance()
+    private val eventBus: EventBus by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +68,9 @@ class MainActivity : AppCompatActivity(),
         permissionsDelegate.attach(this)
         presenter.prepare()
         setupNavigation()
+        eventBus.registerHandler(EventType.ITH_NAME_CHANGED, BaseEventAction(AndroidSchedulers.mainThread()) {
+            Toast.makeText(applicationContext(), "Hello", Toast.LENGTH_SHORT).show()
+        })
     }
 
     private fun setupNavigation() {

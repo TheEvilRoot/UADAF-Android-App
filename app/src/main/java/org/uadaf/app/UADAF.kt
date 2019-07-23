@@ -12,6 +12,8 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import org.uadaf.app.dashboard.DashboardRepository
 import org.uadaf.app.dashboard.impl.DashboardRepositoryImpl
+import org.uadaf.app.internal.eventbus.EventBus
+import org.uadaf.app.internal.eventbus.impl.EventBusImpl
 import org.uadaf.app.internal.network.APIHelper
 import org.uadaf.app.internal.network.ConnectivityInterceptor
 import org.uadaf.app.internal.network.impl.APIHelperImpl
@@ -116,6 +118,10 @@ class UADAF : Application(), KodeinAware {
                 fetcher = instance(),
                 preferencesProvider = instance()
             )
+        }
+
+        bind<EventBus>() with singleton {
+            EventBusImpl(instance())
         }
     }
 
