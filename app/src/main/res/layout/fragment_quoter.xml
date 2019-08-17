@@ -16,62 +16,6 @@
 		android:layout_marginTop="24dp"
 		android:layout_marginBottom="?actionBarSize">
 
-		<androidx.constraintlayout.widget.ConstraintLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent">
-
-			<org.uadaf.app.internal.view.fabs.ModesFAB
-				android:id="@+id/fabMenu"
-				style="@style/Widget.MaterialComponents.FloatingActionButton"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginEnd="8dp"
-				android:layout_marginBottom="8dp"
-				android:clickable="true"
-				android:focusable="true"
-				android:src="@drawable/ic_menu"
-				android:tint="?attr/colorIcons"
-				app:backgroundTint="?attr/colorPrimaryDark"
-				app:fabSize="normal"
-				app:layout_anchorGravity="right|bottom"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:rippleColor="?attr/colorIcons" />
-
-			<org.uadaf.app.internal.view.fabs.FAB
-				android:id="@+id/fabSearch"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginEnd="8dp"
-				android:layout_marginBottom="8dp"
-				android:clickable="true"
-				android:focusable="true"
-				android:src="@drawable/ic_search"
-				android:tint="?attr/colorIcons"
-				app:backgroundTint="?attr/colorPrimaryDark"
-				app:layout_constraintBottom_toTopOf="@+id/fabMenu"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:rippleColor="?attr/colorIcons" />
-
-			<org.uadaf.app.internal.view.fabs.FAB
-				android:id="@+id/fabAdd"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginEnd="8dp"
-				android:layout_marginBottom="8dp"
-				android:clickable="true"
-				android:focusable="true"
-				android:src="@drawable/ic_add"
-				android:tint="?attr/colorIcons"
-				app:backgroundTint="?attr/colorPrimaryDark"
-				app:layout_constraintBottom_toTopOf="@+id/fabSearch"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:rippleColor="?attr/colorIcons" />
-
-		</androidx.constraintlayout.widget.ConstraintLayout>
-
 		<androidx.coordinatorlayout.widget.CoordinatorLayout
 			android:layout_width="0dp"
 			android:layout_height="0dp"
@@ -217,5 +161,61 @@
 				tools:listitem="@layout/quote_layout" />
 
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent">
+
+			<org.uadaf.app.internal.view.fabs.ModesFAB
+				android:id="@+id/fabMenu"
+				style="@style/Widget.MaterialComponents.FloatingActionButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="8dp"
+				android:layout_marginBottom="8dp"
+				android:clickable="true"
+				android:focusable="true"
+				android:src="@drawable/ic_menu"
+				android:tint="?attr/colorIcons"
+				app:backgroundTint="?attr/colorPrimaryDark"
+				app:fabSize="normal"
+				app:layout_anchorGravity="right|bottom"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:rippleColor="?attr/colorIcons" />
+
+			<org.uadaf.app.internal.view.fabs.FAB
+				android:id="@+id/fabSearch"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="8dp"
+				android:layout_marginBottom="8dp"
+				android:clickable="true"
+				android:focusable="true"
+				android:src="@drawable/ic_search"
+				android:tint="?attr/colorIcons"
+				app:backgroundTint="?attr/colorPrimaryDark"
+				app:layout_constraintBottom_toTopOf="@+id/fabMenu"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:rippleColor="?attr/colorIcons" />
+
+			<org.uadaf.app.internal.view.fabs.FAB
+				android:id="@+id/fabAdd"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="8dp"
+				android:layout_marginBottom="8dp"
+				android:clickable="true"
+				android:focusable="true"
+				android:src="@drawable/ic_add"
+				android:tint="?attr/colorIcons"
+				app:backgroundTint="?attr/colorPrimaryDark"
+				app:layout_constraintBottom_toTopOf="@+id/fabSearch"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:rippleColor="?attr/colorIcons" />
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

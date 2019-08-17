@@ -1,6 +1,7 @@
 package org.uadaf.app.quoter
 
 import org.uadaf.app.quoter.sorting.Sorting
+import quoter.DisplayType
 import quoter.Quote
 
 interface QuoterRepository {
@@ -22,5 +23,7 @@ interface QuoterRepository {
     fun setSortingDirection(directionIn: Sorting.Direction)
 
     fun sort()
+
+    fun addQuote(adder: String, author: String, content: String, displayType: DisplayType, attachments: List<String>, repo: String)
 
 }

@@ -5,6 +5,7 @@ import org.uadaf.app.quoter.QuoterAPI
 import org.uadaf.app.quoter.QuoterRepository
 import org.uadaf.app.quoter.sorting.Sorting
 import org.uadaf.app.quoter.sorting.Sorting.Direction
+import quoter.DisplayType
 import quoter.Quote
 
 class QuoterRepositoryImpl(
@@ -65,5 +66,16 @@ class QuoterRepositoryImpl(
 
     override fun sectionNameBySorting(quotePosition: Int): String =
         sorting.section(getQuote(quotePosition))
+
+    override fun addQuote(
+        adder: String,
+        author: String,
+        content: String,
+        displayType: DisplayType,
+        attachments: List<String>,
+        repo: String
+    ) {
+        val result = runBlocking { quoterApi.quoter().add(adder, author, content, displayType, attachments, repo) }
+    }
 
 }
