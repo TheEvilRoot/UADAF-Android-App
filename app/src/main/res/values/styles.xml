@@ -20,4 +20,5 @@
 		<item name="md_color_button_text">@color/colorPrimaryDark</item>
 		<item name="md_color_content">#000</item>
 	</style>
+
 </resources>

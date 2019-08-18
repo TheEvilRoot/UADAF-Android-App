@@ -1,8 +1,13 @@
 package org.uadaf.app.main
 
+import android.content.res.ColorStateList
+import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -22,6 +27,7 @@ import org.uadaf.app.internal.eventbus.EventType
 import org.uadaf.app.internal.eventbus.impl.BaseEventAction
 import org.uadaf.app.internal.exceptions.ExceptionDispatcher
 import org.uadaf.app.internal.exceptions.impl.ExceptionDispatcherImpl
+import org.uadaf.app.internal.themeColor
 import org.uadaf.app.main.impl.MainPresenterImpl
 import org.uadaf.app.members.MembersFragment
 
@@ -59,6 +65,26 @@ class MainActivity : AppCompatActivity(),
         dialog.build()
     }
 
+    private val navForegroundPrimary: Int
+        get() = R.attr.colorPrimary
+    private val navForegroundSecondary: Int
+        get() = R.attr.colorNavIcons
+
+    /**
+     * direction:
+     *  @true if destination has light navigation background
+     *  @false if destination is dashboard
+     */
+    private val destinationChangedListener = NavController.OnDestinationChangedListener { navController, navDestination, _ ->
+        if (navDestination.id != R.id.dashboardFragment) {
+            changeNavigationViewTheme(true, navForegroundPrimary)
+        } else {
+            changeNavigationViewTheme(false, navForegroundSecondary)
+        }
+    }
+
+    private var currentDirection: Boolean = false
+
     private val presenter: MainPresenter by instance()
     private val eventBus: EventBus by instance()
 
@@ -68,6 +94,7 @@ class MainActivity : AppCompatActivity(),
         permissionsDelegate.attach(this)
         presenter.prepare()
         setupNavigation()
+        changeNavigationViewTheme(false, navForegroundSecondary)
         eventBus.registerHandler(EventType.ITH_NAME_CHANGED, BaseEventAction(AndroidSchedulers.mainThread()) {
             Toast.makeText(applicationContext(), "Hello", Toast.LENGTH_SHORT).show()
         })
@@ -76,6 +103,38 @@ class MainActivity : AppCompatActivity(),
     private fun setupNavigation() {
         val navController = findNavController(R.id.mainNavigationFragmentHost)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
+    }
+
+    private fun changeNavigationViewTheme(direction: Boolean, @AttrRes foreground: Int) {
+        if (direction == currentDirection) return
+
+        @ColorInt
+        val fgColor = themeColor(foreground)
+
+        bottomNavigationView.run {
+            @ColorInt
+            val oldFgColor = bottomNavigationView.itemTextColor?.defaultColor ?: fgColor
+
+            val newFg = ColorStateList.valueOf(fgColor)
+
+            val transition = background as TransitionDrawable
+            if (direction) transition.startTransition(300) else transition.reverseTransition(300)
+
+            itemTextColor = newFg
+            itemIconTintList = newFg
+        }
+
+        currentDirection = direction
+    }
+
+    override fun onResume() {
+        super.onResume()
+        findNavController(R.id.mainNavigationFragmentHost).addOnDestinationChangedListener(destinationChangedListener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        findNavController(R.id.mainNavigationFragmentHost).removeOnDestinationChangedListener(destinationChangedListener)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -110,6 +169,7 @@ class MainActivity : AppCompatActivity(),
     override fun displayFatalError(message: String, throwable: Throwable) {
         TODO("fatalError") //To change body of created functions use File | Settings | File Templates.
     }
+
 
 
 }

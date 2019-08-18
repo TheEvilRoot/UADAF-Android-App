@@ -205,8 +205,7 @@ android:layout_height="match_parent">
 			android:tint="?attr/colorIcons"
 			app:backgroundTint="?attr/colorPrimaryDark"
 			app:layout_constraintBottom_toTopOf="@+id/fabSearch"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:rippleColor="?attr/colorIcons" />
+			app:layout_constraintEnd_toEndOf="parent" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

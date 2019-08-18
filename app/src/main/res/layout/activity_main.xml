@@ -24,15 +24,16 @@
 		style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:background="?attr/colorPrimary"
 		android:elevation="0dp"
 		app:itemHorizontalTranslationEnabled="false"
-		app:itemIconTint="?attr/colorNavIcons"
-		app:itemTextColor="?attr/colorNavIcons"
 		app:labelVisibilityMode="selected"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="parent"
-		app:menu="@menu/navigation" />
+		app:menu="@menu/navigation"
+
+		android:background="@drawable/bg_navigation"
+		app:itemIconTint="?attr/colorNavIcons"
+		app:itemTextColor="?attr/colorNavIcons"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
