@@ -13,6 +13,7 @@
 		<item name="colorIcons">#FFF</item>
 		<item name="colorNavIcons">#FFF</item>
 		<item name="colorLike">#C00A0A</item>
+
 		<item name="colorDashboardIcon">@color/colorPrimaryDark</item>
 		<item name="colorDashboardText">@color/colorPrimaryDark</item>
 		<item name="colorDashboardItemBackground">#fff</item>
