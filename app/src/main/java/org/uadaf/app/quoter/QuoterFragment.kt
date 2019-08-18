@@ -75,17 +75,17 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
         dialog
     }
 
-    private val fabMenuMode: FABMode = FABMode(R.string.menu_title, R.drawable.ic_menu) {
+    private val fabMenuMode: FABMode = FABMode(R.string.menu_title, R.drawable.ic_menu, modeClickListener = {
         changeMenu(fabCloseMode)
-    }
+    })
 
-    private val fabCloseMode: FABMode = FABMode(R.string.menu_close_title, R.drawable.ic_close) {
+    private val fabCloseMode: FABMode = FABMode(R.string.menu_close_title, R.drawable.ic_close, modeClickListener = {
         changeMenu(fabMenuMode)
-    }
+    })
 
-    private val fabReloadMode: FABMode = FABMode(R.string.reload_title, R.drawable.ic_reload) {
+    private val fabReloadMode: FABMode = FABMode(R.string.reload_title, R.drawable.ic_reload, modeClickListener =  {
         presenter.loadQuotes()
-    }
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

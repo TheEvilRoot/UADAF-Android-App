@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="?attr/colorBackground">
+	android:background="?attr/colorPrimary">
 
-	<fragment android:id="@+id/mainNavigationFragmentHost"
+	<fragment
+		android:id="@+id/mainNavigationFragmentHost"
 		android:name="androidx.navigation.fragment.NavHostFragment"
-		app:defaultNavHost="true"
-		app:navGraph="@navigation/navigation"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
+		app:defaultNavHost="true"
+		app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintBottom_toBottomOf="parent"/>
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.0"
+		app:navGraph="@navigation/navigation" />
 
-	<com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavigationView"
+	<com.google.android.material.bottomnavigation.BottomNavigationView
+		android:id="@+id/bottomNavigationView"
+		style="@style/Widget.MaterialComponents.BottomNavigationView"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:menu="@menu/navigation"
+		android:background="?attr/colorPrimary"
 		android:elevation="0dp"
-		app:labelVisibilityMode="auto"
-		style="@style/Widget.Design.BottomNavigationView"
+		app:itemHorizontalTranslationEnabled="true"
 		app:itemIconTint="?attr/colorNavIcons"
 		app:itemTextColor="?attr/colorNavIcons"
-		android:background="@android:color/transparent"
-		android:itemBackground="@android:color/transparent"
-		app:itemHorizontalTranslationEnabled="true"/>
+		app:labelVisibilityMode="selected"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:menu="@menu/navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,6 @@ class FABMode (
     val modeTitleRes: Int,
     @DrawableRes
     val modeDrawableRes: Int,
-    val modeClickListener: View.OnClickListener = View.OnClickListener {  },
-    val modeLongClickListener: View.OnLongClickListener = View.OnLongClickListener { false }
+    val modeClickListener: (View) -> Unit = {  },
+    val modeLongClickListener: (View) -> Boolean = { false }
 )

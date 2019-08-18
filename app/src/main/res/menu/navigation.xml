@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<item android:title="@string/service_status_title"
+	<item
 		android:id="@id/serviceStatusFragment"
-		android:icon="@drawable/ic_settings_ethernet"/>
-	<item android:title="@string/members_title" android:id="@id/membersFragment"
-		android:icon="@drawable/ic_people"/>
-	<item android:title="@string/dashboard_title"
-		android:id="@id/dashboardFragment"
-		android:icon="@drawable/ic_dashboard"/>
+		android:icon="@drawable/ic_settings_ethernet"
+		android:title="@string/service_status_title"
+		android:visible="false" />
+	<item
+		android:id="@id/membersFragment"
+		android:icon="@drawable/ic_people"
+		android:title="@string/members_title"
+		android:visible="false" />
 	<item android:title="@string/quoter_title"
 		android:id="@id/quoterFragment"
 		android:icon="@drawable/ic_format_quote"/>
-	<item android:title="@string/notification_center_title"
+	<item
+		android:id="@id/dashboardFragment"
+		android:icon="@drawable/ic_dashboard"
+		android:title="@string/dashboard_title" />
+	<item
 		android:id="@id/notificationCenterFragment"
-		android:icon="@drawable/ic_notifications"/>
+		android:icon="@drawable/ic_notifications"
+		android:title="@string/notification_center_title" />
 
 </menu>

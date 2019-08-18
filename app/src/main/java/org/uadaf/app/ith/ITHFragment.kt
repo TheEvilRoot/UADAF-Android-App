@@ -163,7 +163,7 @@ class ITHFragment : Fragment(), Toolbar.OnMenuItemClickListener, ITHView, Kodein
             errorGroup.visibility = View.VISIBLE
             ithRecyclerView.visibility = View.INVISIBLE
             errorLabel.text = message
-            errorImage.setImageDrawable(context.getDrawable(R.drawable.ic_error_outline))
+            errorImage.setImageDrawable(context.getDrawable(R.drawable.ic_error))
         }
     }
 

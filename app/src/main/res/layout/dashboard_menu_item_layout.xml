@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.uadaf.app.internal.view.layouts.SquareCardViewLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<org.uadaf.app.internal.view.layouts.SquareCardViewLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	app:cardCornerRadius="8dp"
-	app:contentPadding="0dp"
-	app:cardElevation="0dp"
-	app:cardUseCompatPadding="true"
-	app:cardPreventCornerOverlap="true"
+	android:background="?android:attr/selectableItemBackground"
+	android:backgroundTint="?attr/colorDashboardItemBackground"
 	android:clickable="true"
 	android:focusable="true"
-	android:background="?android:attr/selectableItemBackground"
-	android:backgroundTint="?attr/colorDashboardItemBackground">
+	app:cardCornerRadius="8dp"
+	app:cardElevation="8dp"
+	app:cardPreventCornerOverlap="true"
+	app:cardUseCompatPadding="true"
+	app:contentPadding="0dp">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="?android:attr/selectableItemBackground">
 
-		<ImageView android:id="@+id/imageView"
-			android:contentDescription="@string/dashboard_icon_content_desc"
+		<ImageView
+			android:id="@+id/imageView"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
-			app:srcCompat="@drawable/ic_dashboard"
-			app:layout_constraintStart_toStartOf="parent"
 			android:layout_marginStart="8dp"
 			android:layout_marginTop="8dp"
-			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
 			android:layout_marginEnd="8dp"
 			android:layout_marginBottom="8dp"
+			android:contentDescription="@string/dashboard_icon_content_desc"
+			android:tint="?attr/colorDashboardIcon"
 			app:layout_constraintBottom_toTopOf="@+id/titleView"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
 			app:layout_constraintVertical_bias="0.6"
-			android:tint="?attr/colorDashboardIcon"/>
+			app:srcCompat="@drawable/ic_dashboard" />
 
-		<TextView android:id="@+id/titleView"
+		<TextView
+			android:id="@+id/titleView"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-			app:layout_constraintStart_toStartOf="parent"
 			android:layout_marginStart="8dp"
-			app:layout_constraintEnd_toEndOf="parent"
 			android:layout_marginEnd="8dp"
 			android:layout_marginBottom="8dp"
+			android:textAlignment="center"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
 			android:textColor="?attr/colorDashboardText"
 			app:layout_constraintBottom_toBottomOf="parent"
-			android:textAlignment="center"/>
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </org.uadaf.app.internal.view.layouts.SquareCardViewLayout>
