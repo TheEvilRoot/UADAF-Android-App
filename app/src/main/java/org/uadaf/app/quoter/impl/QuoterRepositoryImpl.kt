@@ -12,7 +12,7 @@ class QuoterRepositoryImpl(
     private val quoterApi: QuoterAPI
 ) : QuoterRepository {
 
-    private var sorting: Sorting = Sorting.Authors
+    private var sorting: Sorting = Sorting.Id
     private var direction = Direction.Ascending
 
     private val quotesList = ArrayList<Quote>()
