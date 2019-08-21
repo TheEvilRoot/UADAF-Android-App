@@ -98,7 +98,6 @@ class MainActivity : AppCompatActivity(),
         changeNavigationViewTheme(false, navForegroundSecondary)
         eventBus.registerHandler(EventType.ITH_NAME_CHANGED, BaseEventAction(AndroidSchedulers.mainThread()) {
             if (MDS.hasFlag(MDS.KEY_ITH_LOGIN_REQUESTED)) {
-
                 /** Because if key is present, next fragment in stack should be ITH fragment. **/
                 findNavController(R.id.mainNavigationFragmentHost).navigateUp()
             }

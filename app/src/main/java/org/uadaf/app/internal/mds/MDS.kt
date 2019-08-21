@@ -19,6 +19,8 @@ object MDS: IMetaDataProvider {
     }
 
     override fun clearFlag(key: String): Int? {
+        if (!hasFlag(key)) return null
+
         val value = mdStorage[key]
         mdStorage.remove(key)
         return value

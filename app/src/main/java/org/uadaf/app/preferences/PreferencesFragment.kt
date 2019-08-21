@@ -1,6 +1,7 @@
 package org.uadaf.app.preferences
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.preference.PreferenceFragmentCompat
 import org.kodein.di.Kodein
@@ -10,6 +11,7 @@ import org.kodein.di.generic.instance
 import org.uadaf.app.R
 import org.uadaf.app.internal.eventbus.EventBus
 import org.uadaf.app.internal.eventbus.EventType
+import org.uadaf.app.internal.mds.MDS
 
 class PreferencesFragment : PreferenceFragmentCompat(), KodeinAware{
 
@@ -28,6 +30,11 @@ class PreferencesFragment : PreferenceFragmentCompat(), KodeinAware{
                 eventBus.dispatch(EventType.ITH_NAME_CHANGED)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        MDS.clearFlag(MDS.KEY_ITH_LOGIN_REQUESTED)
     }
 
 }
