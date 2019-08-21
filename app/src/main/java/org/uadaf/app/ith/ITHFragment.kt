@@ -23,6 +23,7 @@ import org.kodein.di.generic.instance
 import org.uadaf.app.R
 import org.uadaf.app.internal.eventbus.EventBus
 import org.uadaf.app.internal.exceptions.ExceptionDispatcher
+import org.uadaf.app.internal.mds.MDS
 import org.uadaf.app.ith.impl.ITHPresenterImpl
 import org.uadaf.app.main.MainView
 
@@ -207,6 +208,7 @@ class ITHFragment : Fragment(), Toolbar.OnMenuItemClickListener, ITHView, Kodein
     override fun displayUsernameDialog() {
         view?.run {
             findNavController().navigate(R.id.preferencesFragment)
+            MDS.setFlag(MDS.KEY_ITH_LOGIN_REQUESTED, 1)
             Toast.makeText(context, context.getString(R.string.ith_username_set_tip), Toast.LENGTH_LONG).show()
         }
     }

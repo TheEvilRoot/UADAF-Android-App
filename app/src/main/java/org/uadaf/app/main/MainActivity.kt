@@ -27,6 +27,7 @@ import org.uadaf.app.internal.eventbus.EventType
 import org.uadaf.app.internal.eventbus.impl.BaseEventAction
 import org.uadaf.app.internal.exceptions.ExceptionDispatcher
 import org.uadaf.app.internal.exceptions.impl.ExceptionDispatcherImpl
+import org.uadaf.app.internal.mds.MDS
 import org.uadaf.app.internal.themeColor
 import org.uadaf.app.main.impl.MainPresenterImpl
 import org.uadaf.app.members.MembersFragment
@@ -96,7 +97,12 @@ class MainActivity : AppCompatActivity(),
         setupNavigation()
         changeNavigationViewTheme(false, navForegroundSecondary)
         eventBus.registerHandler(EventType.ITH_NAME_CHANGED, BaseEventAction(AndroidSchedulers.mainThread()) {
-            Toast.makeText(applicationContext(), "Hello", Toast.LENGTH_SHORT).show()
+            if (MDS.hasFlag(MDS.KEY_ITH_LOGIN_REQUESTED)) {
+
+                /** Because if key is present, next fragment in stack should be ITH fragment. **/
+                findNavController(R.id.mainNavigationFragmentHost).navigateUp()
+            }
+            MDS.clearFlag(MDS.KEY_ITH_LOGIN_REQUESTED)
         })
     }
 
