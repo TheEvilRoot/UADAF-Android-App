@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -119,7 +121,7 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
             }
         }
 
-
+        hideAlert()
         changeMenu(fabMenuMode)
         presenter.loadQuotes()
     }
@@ -141,6 +143,7 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
             quoterRecyclerView.visibility = View.VISIBLE
             adapter.notifyDataSetChanged()
             changeMenu(fabMenuMode)
+            hideAlert()
         }
     }
 
@@ -148,6 +151,8 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
         view?.run {
             quoterRecyclerView.visibility = View.INVISIBLE
             changeMenu(fabMenuMode)
+
+            showAlert(text = getString(R.string.no_quotes_label))
         }
     }
 
@@ -155,6 +160,8 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
         view?.run {
             quoterRecyclerView.visibility = View.INVISIBLE
             changeMenu(fabReloadMode)
+
+            showAlert(text = getString(R.string.no_internet_label))
         }
     }
 
@@ -162,6 +169,8 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
         view?.run {
             quoterRecyclerView.visibility = View.INVISIBLE
             changeMenu(fabReloadMode)
+
+            showAlert(text = getString(R.string.service_unavailable_label))
         }
     }
 
@@ -171,6 +180,8 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
             changeMenu(fabReloadMode)
         }
         Toast.makeText(context, "Error: $message", Toast.LENGTH_LONG).show()
+
+        showAlert(text = "Error: $message")
     }
 
     override fun displayLoading() {
@@ -179,6 +190,7 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
             progressBar.isIndeterminate = true
             titleView.visibility = View.GONE
         }
+        hideAlert()
     }
 
     override fun stopLoading() {
@@ -190,6 +202,7 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
 
     override fun repoError(message: String) {
         Toast.makeText(context, "Repo error: $message", Toast.LENGTH_LONG).show()
+        showAlert(text = "Repo Error: $message")
     }
 
     override fun updateRepo(newRepo: String) {
@@ -200,6 +213,22 @@ class QuoterFragment : Fragment(), KodeinAware, QuoterView {
                 repoNameView.visibility = View.VISIBLE
                 repoNameView.text = newRepo
             }
+        }
+    }
+
+    private fun hideAlert() {
+        view?.run {
+            alertImage.visibility = View.GONE
+            alertLabel.visibility = View.GONE
+        }
+    }
+
+    private fun showAlert(@DrawableRes image: Int = R.drawable.ic_error, text: String? = null) {
+        view?.run {
+            alertImage.visibility = View.VISIBLE
+            alertImage.setImageResource(image)
+            alertLabel.visibility = View.VISIBLE
+            alertLabel.text = text
         }
     }
 
