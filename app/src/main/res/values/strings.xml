@@ -44,5 +44,8 @@
 	<string name="no_quotes_label">There\'s no quotes in this repository</string>
 	<string name="no_internet_label">No internet connection</string>
 	<string name="service_unavailable_label">Sorry. Service temporary unavailable. We already working on it.</string>
+	<string name="repository_label">Repository</string>
+	<string name="repository_meaning_label">What is this?</string>
+	<string name="submit_label">Submit</string>
 
 </resources>

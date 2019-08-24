@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 
-	<EditText
-		android:id="@+id/editText"
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/textInputLayout"
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		app:boxStrokeColor="?attr/colorPrimary"
+		android:textColorHint="?attr/colorPrimary"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="8dp"
 		android:layout_marginTop="16dp"
 		android:layout_marginEnd="8dp"
-		android:background="@drawable/bg_input"
-		android:ems="10"
-		android:inputType="textPersonName"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toTopOf="parent">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/editText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:ems="10"
+			android:hint="@string/repository_label"
+			android:inputType="textPersonName" />
+	</com.google.android.material.textfield.TextInputLayout>
 
 	<Button
 		android:id="@+id/button"
@@ -25,13 +33,12 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
-		android:text="What is this?"
+		android:text="@string/repository_meaning_label"
 		android:textColor="?attr/colorPrimaryDark"
 		android:textSize="12sp"
 		app:iconTint="@color/dark_gray_background"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/editText"
+		app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
 		app:rippleColor="@color/colorPrimaryDark" />
 
 	<Button
@@ -39,11 +46,10 @@
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
 		android:layout_marginEnd="8dp"
 		android:backgroundTint="?attr/colorPrimaryDark"
-		android:text="Submit"
+		android:text="@string/submit_label"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toEndOf="@+id/button"
-		app:layout_constraintTop_toBottomOf="@+id/editText" />
+		app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

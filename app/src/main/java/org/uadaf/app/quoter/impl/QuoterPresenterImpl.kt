@@ -97,7 +97,7 @@ class QuoterPresenterImpl(
             quoterRepository.clearRepo()
             loadQuotes(true)
         }) {
-            view.repoError(it.message ?: "Repo error")
+            view.repoError(it.message ?: "Repository $repoNameIn not found, sorry")
         })
     }
 
