@@ -29,6 +29,7 @@ import org.uadaf.app.preferences.PreferencesProvider
 import org.uadaf.app.preferences.impl.PreferencesProviderImpl
 import org.uadaf.app.quoter.QuoterAPI
 import org.uadaf.app.quoter.QuoterRepository
+import org.uadaf.app.quoter.QuoterService
 import org.uadaf.app.quoter.impl.QuoterAPIImpl
 import org.uadaf.app.quoter.impl.QuoterRepositoryImpl
 import pl.droidsonroids.retrofit2.JspoonConverterFactory
@@ -37,6 +38,7 @@ class UADAF : Application(), KodeinAware {
 
     private val apiURL = "http://52.48.142.75:6741/api/"
     private val ithURL = "https://ithappens.me/"
+    private val quoterUrl = "http://52.48.142.75:6741/api/v2/quote/"
 
 
     // Create full-gray theme, special for Ника :)
@@ -89,7 +91,9 @@ class UADAF : Application(), KodeinAware {
             )
         }
 
-        bind<QuoterAPI>() with singleton { QuoterAPIImpl() }
+        bind<QuoterService>() with singleton { ServiceFactory.create<QuoterService>(quoterUrl, instance()) }
+
+        bind<QuoterAPI>() with singleton { QuoterAPIImpl(instance(), instance()) }
 
         bind<QuoterRepository>() with singleton {
             QuoterRepositoryImpl(

@@ -15,6 +15,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         proguardFiles
     }
+    compileOptions {
+        targetCompatibility = "1.8"
+        sourceCompatibility = "1.8"
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -69,8 +73,9 @@ dependencies {
     implementation 'com.github.Daio-io:dresscode:1.0.0'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.gmail.samehadar:iosdialog:1.0'
-    implementation 'com.uadaf:quoter-api:1.2'
+    implementation 'com.uadaf:quoter-api:1.3.1'
     implementation "io.ktor:ktor-client-android:1.2.1"
+    implementation "io.ktor:ktor-client-okhttp:1.2.1"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0-M1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0-M1'
     implementation 'com.afollestad.material-dialogs:core:3.0.0-rc4'

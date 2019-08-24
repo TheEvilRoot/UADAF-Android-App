@@ -1,6 +1,9 @@
 package org.uadaf.app.quoter.impl
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.future.future
 import kotlinx.coroutines.runBlocking
+import org.uadaf.app.internal.UADAFServiceException
 import org.uadaf.app.quoter.QuoterAPI
 import org.uadaf.app.quoter.QuoterRepository
 import org.uadaf.app.quoter.sorting.Sorting
@@ -17,21 +20,31 @@ class QuoterRepositoryImpl(
 
     private val quotesList = ArrayList<Quote>()
 
-    override fun getQuotesCount(): Int =
+    override fun getQuotesCount():   Int =
         quotesList.count()
 
     override fun getQuote(pos: Int): Quote =
         quotesList[pos]
 
     override fun fetchQuotes(repoName: String) {
-        val quotes = runBlocking { quoterApi.quoter().all(repo = repoName) }
-        clearRepo()
-        quotesList.addAll(quotes)
-        sort()
+        val quotesCall = quoterApi.quoter().all(repoName).execute()
+
+        if (quotesCall.isSuccessful) {
+            val payload = quotesCall.body()
+            if (payload != null) {
+                clearRepo()
+                quotesList.addAll(payload)
+                sort()
+            } else {
+                throw UADAFServiceException("Quoter", "/all?resolver=$repoName payload is null")
+            }
+        } else {
+            throw UADAFServiceException("Quoter", "${quotesCall.raw().request().url()} status code ${quotesCall.code()}")
+        }
     }
 
     override fun checkRepo(repoName: String): Boolean {
-        runBlocking { quoterApi.quoter().total(repo = repoName) }
+        quoterApi.quoter().total(repoName).execute()
         return true
     }
 
@@ -75,7 +88,7 @@ class QuoterRepositoryImpl(
         attachments: List<String>,
         repo: String
     ) {
-        val result = runBlocking { quoterApi.quoter().add(adder, author, content, displayType, attachments, repo) }
+       // val result = runBlocking { quoterApi.quoter().add(adder, author, content, displayType, attachments, repo) }
     }
 
 }

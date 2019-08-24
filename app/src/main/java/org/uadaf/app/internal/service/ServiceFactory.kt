@@ -28,5 +28,4 @@ object ServiceFactory {
 
         return retrofit.create(T::class.java)
     }
-
 }

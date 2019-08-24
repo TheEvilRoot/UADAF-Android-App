@@ -82,6 +82,7 @@ class QuoterPresenterImpl(
                     is UADAFServiceException -> view.displayServiceUnavailable()
                     else -> exceptionDispatcher.dispatch(it, view)
                 }
+                it.printStackTrace()
             }))
         }
     }

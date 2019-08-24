@@ -1,29 +1,26 @@
 package org.uadaf.app.quoter.impl
 
+import org.uadaf.app.internal.network.ConnectivityInterceptor
 import org.uadaf.app.quoter.QuoterAPI
-import quoter.Quoter
+import org.uadaf.app.quoter.QuoterService
 
 class QuoterAPIImpl(
-
+    private val interceptor: ConnectivityInterceptor,
+    private val service: QuoterService
 ) : QuoterAPI {
 
-    private val baseUrl = "http://52.48.142.75:6741/api/v2/quote/"
     private val keyLifetime = 5 * 60 * 1000
 
-    private var quoter: Quoter? = null
     private var hasKey: Boolean = false
     private var keyTime: Long = -1
 
-    override fun quoter(): Quoter {
-        if (quoter == null || (hasKey && keyTime + keyLifetime < System.currentTimeMillis())) {
-            quoter = Quoter(baseUrl, null)
+    override fun quoter(): QuoterService {
+        if (hasKey && keyTime + keyLifetime < System.currentTimeMillis()) {
             hasKey = false
             keyTime = -1
-            return quoter
-                ?: throw RuntimeException("Unable to create Quoter(baseUrl, null)")
+            return service
         }
-
-        return quoter ?: throw RuntimeException("Quoter unexpectedly became null")
+        return service
     }
 
     override fun hasValidKey(): Boolean =
@@ -32,6 +29,5 @@ class QuoterAPIImpl(
     override fun applyKey(key: String) {
         hasKey = true
         keyTime = System.currentTimeMillis()
-        quoter = Quoter(baseUrl, key)
     }
 }
